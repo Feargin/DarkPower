@@ -2,15 +2,14 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
  
 public class LocalizationManager : MonoBehaviour
 {
     private string _currentLanguage;
     private Dictionary<string, string> _localizedText;
-    public static bool isReady = false;
- 
-    public delegate void ChangeLangText();
-    public event ChangeLangText OnLanguageChanged;
+    public static bool IsReady = false;
+    public Action OnLanguageChanged;
     public string CurrentLanguage
     {
         get 
@@ -52,10 +51,10 @@ public class LocalizationManager : MonoBehaviour
  
         if (Application.platform == RuntimePlatform.Android)
         {
-            WWW reader = new WWW(path);
+            UnityWebRequest reader = new UnityWebRequest(path);
             while (!reader.isDone) { }
  
-            dataAsJson = reader.text;
+            dataAsJson = reader.downloadHandler.text;
         }
         else
         {
@@ -72,7 +71,7 @@ public class LocalizationManager : MonoBehaviour
  
         PlayerPrefs.SetString("Language", langName);
         _currentLanguage = PlayerPrefs.GetString("Language");
-        isReady = true;
+        IsReady = true;
  
         OnLanguageChanged?.Invoke();
     }
@@ -86,15 +85,6 @@ public class LocalizationManager : MonoBehaviour
         else
         {
             throw new Exception("Localized text with key \"" + key + "\" not found");
-        }
-    }
- 
-    
-    public bool IsReady
-    {
-        get
-        {
-            return isReady;
         }
     }
 }

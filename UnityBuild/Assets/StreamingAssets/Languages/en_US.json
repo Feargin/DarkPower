@@ -1,0 +1,148 @@
+{
+    "items": [
+    {
+        "key": "Beak",
+        "value": "Beak"
+    },
+    {
+        "key": "Again",
+        "value": "Play again"
+    },
+    {
+        "key": "Select Dice",
+        "value": "Select Dice"
+    },
+    {
+        "key": "Deselect Dice",
+        "value": "Deselect Dice"
+    },
+    {
+        "key": "Spawn Minion",
+        "value": "Spawn Minion"
+    },
+    {
+        "key": "These are power dice",
+        "value": "These are power dice. You will lose if you spend all the dice and unable to light all the candles."
+    },
+    {
+        "key": "You can take up to four Power dice",
+        "value": "You can take up to four Power dice."
+    },
+    {
+        "key": "Сreate a minion",
+        "value": "Сreate a minion. You can't create more than two minions at a time."
+    },
+    {
+        "key": "These are candles of power",
+        "value": "These are candles of power. You need to light nine candles to win."
+    },
+    {
+        "key": "Map",
+        "value": "Map open button."
+    },
+    {
+        "key": "Info",
+        "value": "You can always open the hint screen by clicking on this button."
+    },
+    {
+        "key": "Close",
+        "value": "Close the game."
+    },
+    {
+        "key": "Start again",
+        "value": "Start again"
+    },
+    {
+        "key": "Options",
+        "value": "Options"
+    },
+    {
+        "key": "Attack",
+        "value": "Attack"
+    },
+    {
+        "key": "attack settlement",
+        "value": "Do you want to attack settlement?"
+    },
+    {
+        "key": "You can attack",
+        "value": "You can attack settlements by clicking the stars."
+    },
+    {
+        "key": "This is your home",
+        "value": "This is your home. Click on it to go to the home screen."
+    },
+    {
+        "key": "Click on it to go to the home screen",
+        "value": "Click on it to go to the home screen."
+    },
+    {
+        "key": "This is your minien",
+        "value": "This is your minien. Click to select it."
+    },
+    {
+        "key": "Victory",
+        "value": "You have risen to the world of the living! \n \n Victory!"
+    },
+    {
+        "key": "Fail",
+        "value": "You have spent all your power and will remain in captivity for many years to come..."
+    },
+    {
+        "key": "You can only have two minions",
+        "value": "You can only have two minions at the same time"
+    },
+    {
+        "key": "Are you sure you want to quit",
+        "value": "Are you sure you want to quit?"
+    },
+    {
+        "key": "Exit",
+        "value": "Exit"
+    },
+    {
+        "key": "Music",
+        "value": "Music"
+    },
+    {
+        "key": "Audio",
+        "value": "Audio"
+    },
+    {
+        "key": "Language",
+        "value": "Language"
+    },
+    {
+        "key": "Score",
+        "value": "Score"
+    },
+    {
+        "key": "Dice auto roll",
+        "value": "Dice auto roll"
+    },
+    {
+        "key": "1-3: Lose",
+        "value": "1-3: Lose"
+    },
+    {
+        "key": "4-5: Victory",
+        "value": "4-5: Victory"
+    },
+    {
+        "key": "Enemy dice",
+        "value": "Enemy dice."
+    },
+    {
+        "key": "Button to automatically roll all dice",
+        "value": "Button to automatically roll all dice."
+    },
+    {
+        "key": "Victory points",
+        "value": "Victory points. You need to spend all the dice to earn more points than the enemy."
+    },
+    {
+        "key": "These are your dice",
+        "value": "These are your dice. Drag the dice to the bottom square to fight the enemy."
+    }
+    ]
+}
