@@ -5,7 +5,8 @@ public class UIManagerMain : MonoBehaviour
 {
     public void LoadLevel()
     {
-        SceneManager.LoadScene(1);
+        LoadingScreenManager.LoadScene (1);
+        //SceneManager.LoadScene(1);
     }
     public void Exit()
     {
