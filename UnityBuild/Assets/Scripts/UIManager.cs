@@ -5,7 +5,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Inctance;
+    public static UIManager Instance;
     [SerializeField] private GameObject _initialPanel;
     [SerializeField] private GameObject _messagePanel;
     [SerializeField] private GameObject _exitPanel;
@@ -16,12 +16,12 @@ public class UIManager : MonoBehaviour
 
     private void Awake() 
     {
-        if(Inctance != null)
+        if(Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        Inctance = this;
+        Instance = this;
     }
 
     private void Start()

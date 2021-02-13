@@ -50,6 +50,6 @@ public class LocalizedText : MonoBehaviour
             _text = GetComponent<TextMeshProUGUI>();
         }
         _text.text = _localizationManager.GetLocalizedValue(_key);
-        print("go");
+        //print("go");
     }
 }
