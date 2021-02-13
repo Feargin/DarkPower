@@ -38,7 +38,7 @@ public class FightPanel : MonoBehaviour
     private int _enemyScore = 0;
     private int _reward = 0;
 
-    private bool readyToPlace = true;
+    private bool _readyToPlace = true;
 
     private Dice _playerDice;
     private Dice _enemyDice;
@@ -96,7 +96,7 @@ public class FightPanel : MonoBehaviour
         Time.timeScale = 0f;
         _playerLayourtGroup.enabled = true;
         _reward = _marker.StarCounter;
-        readyToPlace = true;
+        _readyToPlace = true;
         _randomDice.Disable(false);
         _playerScore = 0;
         _enemyScore = 0;
@@ -281,7 +281,7 @@ public class FightPanel : MonoBehaviour
 
     private void OnDicePlacement(Dice dice, PointerEventData eventData)
     {
-        if (readyToPlace == false)
+        if (_readyToPlace == false)
             return;
 
         PointerEventData m_PointerEventData = new PointerEventData(EventSystem.current);
@@ -307,7 +307,7 @@ public class FightPanel : MonoBehaviour
                 EnemySelectDice();
                 CompareDices();
 
-                readyToPlace = false;
+                _readyToPlace = false;
                 StartCoroutine(HideDices());
                 break;
             }
@@ -345,7 +345,7 @@ public class FightPanel : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         _playerDice.Disable();
         _enemyDice.Disable();
-        readyToPlace = true;
+        _readyToPlace = true;
 
         if (_enemyBestDices.Count == 0 || _playerActiveDices.Count == 0)
         {

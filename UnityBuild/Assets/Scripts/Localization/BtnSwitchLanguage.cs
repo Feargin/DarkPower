@@ -1,16 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
  
 public class BtnSwitchLanguage: MonoBehaviour
 {
     [SerializeField]
     private TMP_Dropdown _dropdown;
-    private LocalizationManager _localizationManager;
 
     private void Start()
     {
-        _localizationManager = GetComponent<LocalizationManager>();
+        if(LocalizationManager.Instance.CurrentLanguage == "en_US")
+            _dropdown.value = 0;
+        else if(LocalizationManager.Instance.CurrentLanguage == "ru_RU")
+            _dropdown.value = 1;
     }
  
     public void OnChangeValueInDropdown()
@@ -18,10 +21,17 @@ public class BtnSwitchLanguage: MonoBehaviour
         switch(_dropdown.value)
         {
             case 0:
-            _localizationManager.LoadLocalizedText("en_US");
+            if (Application.platform == RuntimePlatform.Android) 
+                LocalizationManager.Instance.StartCoroutine(LocalizationManager.Instance.LoadLocalizedTextAndroid("en_US"));
+            else
+                LocalizationManager.Instance.LoadLocalizedText("en_US");
+            
             break;
             case 1:
-            _localizationManager.LoadLocalizedText("ru_RU");
+            if (Application.platform == RuntimePlatform.Android) 
+                LocalizationManager.Instance.StartCoroutine(LocalizationManager.Instance.LoadLocalizedTextAndroid("ru_RU"));
+            else
+                LocalizationManager.Instance.LoadLocalizedText("ru_RU");
             break;
         }
         
