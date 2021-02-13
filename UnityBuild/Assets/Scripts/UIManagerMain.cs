@@ -5,8 +5,13 @@ public class UIManagerMain : MonoBehaviour
 {
     public void LoadLevel()
     {
-        LoadingScreenManager.LoadScene (1);
-        //SceneManager.LoadScene(1);
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            SceneManager.LoadScene(1);
+            //return;
+        }
+        SceneManager.LoadScene(1);
+        //LoadingScreenManager.LoadScene (1);
     }
     public void Exit()
     {
