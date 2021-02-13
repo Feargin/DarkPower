@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadingScreenManager : MonoBehaviour
 {
 
-    [Header("Loading Visuals")]
+    /*[Header("Loading Visuals")]
     [SerializeField] private Image loadingIcon;
     [SerializeField] private Image loadingDoneIcon;
     [SerializeField] private Text loadingText;
@@ -34,7 +34,7 @@ public class LoadingScreenManager : MonoBehaviour
     public static void LoadScene(int levelNum)
     {
 		
-        Application.backgroundLoadingPriority = ThreadPriority.High;
+        Application.backgroundLoadingPriority = ThreadPriority.Low;
         sceneToLoad = levelNum;
         SceneManager.LoadScene(loadingSceneIndex);
     }
@@ -47,6 +47,7 @@ public class LoadingScreenManager : MonoBehaviour
         //fadeOverlay.gameObject.SetActive(true);
         currentScene = SceneManager.GetActiveScene();
         StartCoroutine(LoadAsync(sceneToLoad));
+        
     }
 
     private IEnumerator LoadAsync(int levelNum)
@@ -131,6 +132,6 @@ public class LoadingScreenManager : MonoBehaviour
         progressBar.fillAmount = 1f;
         //loadingText.text = "Загрузка завершена";
 
-    }
+    }*/
 
 }
