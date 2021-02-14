@@ -37,27 +37,27 @@ public class CandelsController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnResourceChange += ChekcCurrentResource;
+        ResourceHolder.Instance.OnResourceChange += ChekcCurrentResource;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnResourceChange -= ChekcCurrentResource;
+        ResourceHolder.Instance.OnResourceChange -= ChekcCurrentResource;
     }
 
-    private void ChekcCurrentResource(GameManager.ResourceType resourceType, int amount)
+    private void ChekcCurrentResource(ResourceHolder.ResourceType resourceType, int amount)
     {
-        if(GameManager.Instance.GetResource(GameManager.ResourceType.Candles) < 9 
-        && GameManager.Instance.GetResource(GameManager.ResourceType.Minions) <= 0 
-        && GameManager.Instance.GetResource(GameManager.ResourceType.PowerDise) >= 12)
+        if(ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Candles) < 9 
+        && ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Minions) <= 0 
+        && ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.PowerDise) >= 12)
             _failPanel.SetActive(true);
-        if(GameManager.Instance.GetResource(GameManager.ResourceType.Candles) >= 9)
+        if(ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Candles) >= 9)
             _winPanel.SetActive(true);
-        if(GameManager.ResourceType.Candles == resourceType) 
-            ChangeCountCandels(GameManager.Instance.GetResource(GameManager.ResourceType.Candles));
-        if(GameManager.Instance.GetResource(GameManager.ResourceType.Candles) > 0) _background.sprite = _backgroundSprites[0];
-        if(GameManager.Instance.GetResource(GameManager.ResourceType.Candles) > 3) _background.sprite = _backgroundSprites[1];
-        if(GameManager.Instance.GetResource(GameManager.ResourceType.Candles) > 5) _background.sprite = _backgroundSprites[2];
+        if(ResourceHolder.ResourceType.Candles == resourceType) 
+            ChangeCountCandels(ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Candles));
+        if(ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Candles) > 0) _background.sprite = _backgroundSprites[0];
+        if(ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Candles) > 3) _background.sprite = _backgroundSprites[1];
+        if(ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Candles) > 5) _background.sprite = _backgroundSprites[2];
     }
 
 }

@@ -3866,7 +3866,7 @@ GameObject:
   - component: {fileID: 290726179}
   - component: {fileID: 290726180}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Resources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8698,7 +8698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671583614}
   m_Layer: 0
-  m_Name: '**Fight Panel'
+  m_Name: ++Fight Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9567,7 +9567,7 @@ GameObject:
   - component: {fileID: 723434015}
   - component: {fileID: 723434014}
   m_Layer: 0
-  m_Name: '**Defeat'
+  m_Name: ++Defeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10405,7 +10405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -123.2218, y: 118.7207}
+  m_AnchoredPosition: {x: -123.221924, y: 118.7207}
   m_SizeDelta: {x: 246.43994, y: 237.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &759022571
@@ -11466,7 +11466,7 @@ GameObject:
   - component: {fileID: 801589390}
   - component: {fileID: 801589389}
   m_Layer: 0
-  m_Name: '**Victory'
+  m_Name: ++Victory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16521,7 +16521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.5750732, y: 0}
+  m_AnchoredPosition: {x: 2.5751953, y: 0}
   m_SizeDelta: {x: -187.25009, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1320332527

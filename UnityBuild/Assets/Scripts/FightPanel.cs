@@ -81,7 +81,7 @@ public class FightPanel : MonoBehaviour
         switch(_marker.BonusLoot)
         {
             case Marker.MarkerBonus.bonusFightDice:
-                GameManager.Instance.BonusFightDices++;
+                ResourceHolder.Instance.BonusFightDices++;
                 _resultText.text += "\nParmanent: +1 Combat Dice";
                 break;
             default:
@@ -91,7 +91,6 @@ public class FightPanel : MonoBehaviour
 
     private void InitFight()
     {
-        print(_fightPanel);
         _enemyCubePos.gameObject.SetActive(true);
         _playerCubePos.gameObject.SetActive(true);
         _fightPanel.SetActive(true);
@@ -115,7 +114,7 @@ public class FightPanel : MonoBehaviour
         {
             _playerDices[i].Disable();
             _playerDices[i].gameObject.SetActive(false);
-            if (i < _minion.DiceCount * 2 + GameManager.Instance.BonusFightDices)
+            if (i < _minion.DiceCount * 2 + ResourceHolder.Instance.BonusFightDices)
             {
                 _playerDices[i].gameObject.SetActive(true);
                 _playerActiveDices.Add(_playerDices[i]);

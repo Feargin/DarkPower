@@ -21,7 +21,7 @@ public class Marker : MonoBehaviour
         if (StarCount == 0)
             return;
         panel.SelectedMarker = this;
-        if(GameManager.Instance.GetResource(GameManager.ResourceType.Minions) > 0) 
+        if(ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Minions) > 0) 
             panel.gameObject.SetActive(true);
         SelectionMinions.Instance.TargetMarker = this;
     }
