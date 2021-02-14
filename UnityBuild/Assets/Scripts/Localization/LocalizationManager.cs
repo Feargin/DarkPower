@@ -35,7 +35,6 @@ public class LocalizationManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
 
         if (!PlayerPrefs.HasKey("Language"))
         {
@@ -79,7 +78,7 @@ public class LocalizationManager : MonoBehaviour
         {
             _localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
         }
-        Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
+        //Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
         
         PlayerPrefs.SetString("Language", langName);
         _currentLanguage = PlayerPrefs.GetString("Language");
@@ -94,7 +93,7 @@ public class LocalizationManager : MonoBehaviour
 
         string filePath = Path.Combine(Application.streamingAssetsPath, "Languages/" + langName + ".json");
 
-        Debug.Log(filePath);
+        //Debug.Log(filePath);
         if (File.Exists(filePath))
         {
             string dataAsJson = File.ReadAllText(filePath);
@@ -104,11 +103,11 @@ public class LocalizationManager : MonoBehaviour
             {
                 _localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
-            Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
+            //Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
         }
         else
         {
-            Debug.LogError("Невозможно найти файл!");
+            //Debug.LogError("Невозможно найти файл!");
         }
         PlayerPrefs.SetString("Language", langName);
         _currentLanguage = PlayerPrefs.GetString("Language");

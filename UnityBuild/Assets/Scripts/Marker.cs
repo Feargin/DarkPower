@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Marker : MonoBehaviour
 {
-    public int StarCounter;
+    public int StarCount;
     public MarkerBonus BonusLoot;
     public MarkerAbility Ability;
     [SerializeField] private GameObject [] _stars;
@@ -10,25 +10,25 @@ public class Marker : MonoBehaviour
 
     public void Start ()
     {
-        for(int i = 0; i < StarCounter; i++)
+        for(int i = 0; i < StarCount; i++)
         {
             _stars[i].SetActive(true);
         }
     }
-    public void SetActivePanel(EventPanel panel)
+    
+    public void Activate(EventPanel panel)
     {
-        if (StarCounter == 0)
+        if (StarCount == 0)
             return;
         panel.SelectedMarker = this;
-        if(GameManager.Instance.GetResource(GameManager.ResourceType.Minions) > 0) panel.gameObject.SetActive(true);
+        if(GameManager.Instance.GetResource(GameManager.ResourceType.Minions) > 0) 
+            panel.gameObject.SetActive(true);
         SelectionMinions.Instance.TargetMarker = this;
     }
 
-    public void ChangeStars()
+    public void Disable()
     {
-        
         _starPanel.SetActive(false);
-        
     }
 
     public enum MarkerBonus

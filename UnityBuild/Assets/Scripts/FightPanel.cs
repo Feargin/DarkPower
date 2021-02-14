@@ -62,8 +62,10 @@ public class FightPanel : MonoBehaviour
 
     public void StartFight(MapEntity entity, Marker marker)
     {
-        if (marker.StarCounter == 0)
+        if (marker.StarCount == 0)
             return;
+
+        
 
         _marker = marker;
         _minion = entity;
@@ -89,13 +91,14 @@ public class FightPanel : MonoBehaviour
 
     private void InitFight()
     {
+        print(_fightPanel);
         _enemyCubePos.gameObject.SetActive(true);
         _playerCubePos.gameObject.SetActive(true);
         _fightPanel.SetActive(true);
         _resultText.text = "";
         Time.timeScale = 0f;
         _playerLayourtGroup.enabled = true;
-        _reward = _marker.StarCounter;
+        _reward = _marker.StarCount;
         _readyToPlace = true;
         _randomDice.Disable(false);
         _playerScore = 0;
@@ -126,7 +129,7 @@ public class FightPanel : MonoBehaviour
         for (int i = 0; i < _enemyDices.Count; i++)
         {
             _enemyDices[i].gameObject.SetActive(false);
-            if (i < _marker.StarCounter * 2)
+            if (i < _marker.StarCount * 2)
             {
                 _enemyDices[i].gameObject.SetActive(true);
                 _enemyDices[i].Roll();
@@ -225,8 +228,8 @@ public class FightPanel : MonoBehaviour
         OnFightEnd?.Invoke(_reward);
         if(_reward > 0)
         {
-            _marker.ChangeStars();
-            _marker.StarCounter = 0;
+            _marker.Disable();
+            _marker.StarCount = 0;
         }
         _minion.Candles += _reward;
         _minion.DiceCount = _playerActiveDices.Count / 2;

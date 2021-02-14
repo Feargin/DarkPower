@@ -7,8 +7,9 @@ public class DepartureMinions : MonoBehaviour
     private int _getDiceCount;
     [SerializeField] private GameObject _perfab;
     [SerializeField] private GameObject _map;
-    [SerializeField] private Marker _marker;
+    [SerializeField] private Marker _homeMarker;
     [SerializeField] private GameObject _areaSpawn;
+    [SerializeField] private GameObject _MessagePanel;
     [SerializeField] private Transform _pathChunksParent;
     [SerializeField] private Image [] Dices;
     [SerializeField] private Sprite [] _sprite;
@@ -17,7 +18,7 @@ public class DepartureMinions : MonoBehaviour
     {
         if (GameManager.Instance.GetResource(GameManager.ResourceType.Minions) >= 2)
         {
-            UIManager.Inctance.SetMessagePanel("You can only have two minions at the same time!");
+            _MessagePanel.SetActive(true);
             return;
         }
 
@@ -32,10 +33,10 @@ public class DepartureMinions : MonoBehaviour
         _getDiceCount = _diceCount;
         if(_getDiceCount > 0)
         {
-            var entityObject = Instantiate(_perfab, _marker.gameObject.transform.position + (Vector3)Random.insideUnitCircle * 100f, Quaternion.identity, _areaSpawn.transform);
+            var entityObject = Instantiate(_perfab, _homeMarker.gameObject.transform.position + (Vector3)Random.insideUnitCircle * 100f, Quaternion.identity, _areaSpawn.transform);
             var entity = entityObject.GetComponent<MapEntity>();
             entity.DiceCount = _getDiceCount;
-            entity.CurrentMarker = _marker;
+            entity.CurrentMarker = _homeMarker;
             SelectionMinions.Instance.PullEntity.Add(entityObject);
             SelectionMinions.Instance.SetHighlighted(entityObject);
             entityObject.AddComponent<Button>().onClick.AddListener(
@@ -44,7 +45,7 @@ public class DepartureMinions : MonoBehaviour
                     SelectionMinions.Instance.SetHighlighted(entityObject); 
                 });
             entity._pathChunksParent = _pathChunksParent;
-            UIManager.Inctance.EnablePanel(_map);
+            UIManager.Instance.EnablePanel(_map);
             GameManager.Instance.AddResource(GameManager.ResourceType.Minions, 1);
             GameManager.Instance.AddResource(GameManager.ResourceType.PowerDise, _diceCount);
             _diceCount = 0;
