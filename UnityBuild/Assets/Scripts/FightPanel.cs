@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
@@ -15,7 +14,6 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private HorizontalLayoutGroup _playerLayourtGroup;
     [SerializeField] private TextMeshProUGUI _playerVictoryPoints;
     [SerializeField] private TextMeshProUGUI _enemyVictoryPoints;
-    [SerializeField] private string _cubePosTag = "CubePos";
     [SerializeField] private Transform _enemyCubePos;
     [SerializeField] private Transform _playerCubePos;
     [SerializeField] private Transform _playerDicesParent;
@@ -40,23 +38,36 @@ public class FightPanel : MonoBehaviour
 
     private bool _readyToPlace = true;
 
-    private Dice _playerDice;
-    private Dice _enemyDice;
+    [SerializeField] private AbilityCard[] _playerAbilities;
+    [SerializeField] private DiceHolder _playerDice;
+    [SerializeField] private DiceHolder _enemyDice;
 
     private MapEntity _minion;
     private Marker _marker;
 
+    public static FightPanel Instance;
+    
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     private void OnEnable()
     {
         MapEntity.OnTargetArrived += StartFight;
-        Dice.OnDicePlacement += OnDicePlacement;
+        _playerDice.OnDicePlace += OnDicePlacement;
         Dice.OnDiceRoll += OnDiceRoll;
     }
 
     private void OnDisable()
     {
         MapEntity.OnTargetArrived -= StartFight;
-        Dice.OnDicePlacement -= OnDicePlacement;
+        _playerDice.OnDicePlace -= OnDicePlacement;
         Dice.OnDiceRoll -= OnDiceRoll;
     }
 
@@ -65,8 +76,6 @@ public class FightPanel : MonoBehaviour
         if (marker.StarCount == 0)
             return;
 
-        
-
         _marker = marker;
         _minion = entity;
 
@@ -74,6 +83,16 @@ public class FightPanel : MonoBehaviour
         InitPlayerDices();
         InitEnemyDices();
         ApplyEnemyAbilities();
+
+        StartCoroutine(AfterStartFight());
+    }
+
+    private IEnumerator AfterStartFight()
+    {
+        yield return new WaitForEndOfFrame();
+        _playerLayourtGroup.enabled = false;
+        foreach(var a in _playerAbilities)
+            a.Init();
     }
 
     private void ApplyMarkerBonus()
@@ -192,6 +211,8 @@ public class FightPanel : MonoBehaviour
     {
         for (int i = 0; i < _playerActiveDices.Count; i++)
         {
+            if(_playerActiveDices[i].Value != -1)
+                continue;
             _playerActiveDices[i].RollWithAnim();
             yield return new WaitForSecondsRealtime(Random.Range(0.1f,0.3f));
         }
@@ -249,11 +270,11 @@ public class FightPanel : MonoBehaviour
 
     private void CompareDices()
     {
-        if(_playerDice.Value > _enemyDice.Value)
+        if(_playerDice.ContainedDice.Value > _enemyDice.ContainedDice.Value)
         {
             _playerScore++;
         }
-        else if(_playerDice.Value < _enemyDice.Value)
+        else if(_playerDice.ContainedDice.Value < _enemyDice.ContainedDice.Value)
         {
             _enemyScore++;
         }
@@ -281,39 +302,17 @@ public class FightPanel : MonoBehaviour
         }
     }
 
-    private void OnDicePlacement(Dice dice, PointerEventData eventData)
+    private void OnDicePlacement(DiceHolder holder, AbilityCard card)
     {
-        if (_readyToPlace == false)
+        if (_readyToPlace == false || card != null)
             return;
+        
+        EnemySelectDice();
+        _playerActiveDices.Remove(_playerDice.ContainedDice);
+        CompareDices();
 
-        PointerEventData m_PointerEventData = new PointerEventData(EventSystem.current);
-        m_PointerEventData.position = eventData.position;
-        List<RaycastResult> results = new List<RaycastResult>();
-        _raycaster.Raycast(m_PointerEventData, results);
-        _playerLayourtGroup.enabled = false;
-
-        foreach (var r in results)
-        {
-            if(r.gameObject.CompareTag(_cubePosTag))
-            {
-                _playerDice = dice;
-                _playerDice.transform.position = r.gameObject.transform.position;
-
-                /*
-                _playerActiveDices.Remove(_playerDice);
-                Dice enemyDice = _enemyBestDices[Random.Range(0, _enemyBestDices.Count)];
-                _enemyDice = enemyDice;
-                _enemyBestDices.Remove(_enemyDice);
-                enemyDice.transform.position = _enemyCubePos.position;
-                enemyDice.SetImageByValue();*/
-                EnemySelectDice();
-                CompareDices();
-
-                _readyToPlace = false;
-                StartCoroutine(HideDices());
-                break;
-            }
-        }
+        _readyToPlace = false;
+        StartCoroutine(HideDices());
     }
 
     private IEnumerator LateEndFight()
@@ -324,11 +323,9 @@ public class FightPanel : MonoBehaviour
 
     private void EnemySelectDice()
     {
-        _playerActiveDices.Remove(_playerDice);
         Dice enemyDice = _enemyBestDices[Random.Range(0, _enemyBestDices.Count)];
-        _enemyDice = enemyDice;
-        _enemyBestDices.Remove(_enemyDice);
-        enemyDice.transform.position = _enemyCubePos.position;
+        _enemyDice.SelectDice(enemyDice);
+        _enemyBestDices.Remove(_enemyDice.ContainedDice);
         enemyDice.SetImageByValue();
     }
 
@@ -345,8 +342,8 @@ public class FightPanel : MonoBehaviour
     private IEnumerator HideDices()
     {
         yield return new WaitForSecondsRealtime(1f);
-        _playerDice.Disable();
-        _enemyDice.Disable();
+        _playerDice.DeselectDice();
+        _enemyDice.DeselectDice();
         _readyToPlace = true;
 
         if (_enemyBestDices.Count == 0 || _playerActiveDices.Count == 0)
@@ -358,4 +355,7 @@ public class FightPanel : MonoBehaviour
             else EndFight();
         }
     }
+
+    public List<Dice> GetEnemyDice() => _enemyBestDices;
+    public List<Dice> GetPlayerDice() => _playerActiveDices;
 }
