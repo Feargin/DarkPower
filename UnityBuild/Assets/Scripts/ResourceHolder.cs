@@ -6,6 +6,7 @@ public class ResourceHolder : MonoBehaviour
 {
     public static ResourceHolder Instance;
     public Action<ResourceType, int> OnResourceChange;
+    public List<int> PlayerAbilityIDPool;
 
     #region Player achivements
     public int BonusFightDices = 0;
