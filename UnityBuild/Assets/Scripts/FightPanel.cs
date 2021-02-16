@@ -25,10 +25,13 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _randomDiceText2;
     [SerializeField] private TextMeshProUGUI _resultText;
     [SerializeField] private TextMeshProUGUI _infoText;
+    [SerializeField] private Transform _playerAbilitiesPanel;
+    [SerializeField] private PlayerAbilities _playerAbilities;
 
     private List<Dice> _enemyActiveDices = new List<Dice>();
     private List<Dice> _enemyBestDices = new List<Dice>();
     private List<Dice> _playerActiveDices = new List<Dice>();
+    private List<AbilityCard> _playerCards = new List<AbilityCard>();
 
     public static System.Action<int> OnFightEnd;
 
@@ -38,7 +41,7 @@ public class FightPanel : MonoBehaviour
 
     private bool _readyToPlace = true;
 
-    [SerializeField] private AbilityCard[] _playerAbilities;
+    //[SerializeField] private AbilityCard[] _playerAbilities;
     [SerializeField] private DiceHolder _playerDice;
     [SerializeField] private DiceHolder _enemyDice;
 
@@ -83,6 +86,7 @@ public class FightPanel : MonoBehaviour
         InitPlayerDices();
         InitEnemyDices();
         ApplyEnemyAbilities();
+        ApplyPlayerAbilities();
 
         StartCoroutine(AfterStartFight());
     }
@@ -91,8 +95,8 @@ public class FightPanel : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         _playerLayourtGroup.enabled = false;
-        foreach(var a in _playerAbilities)
-            a.Init();
+        //foreach(var a in _playerAbilities)
+        //    a.Init();
     }
 
     private void ApplyMarkerBonus()
@@ -169,6 +173,23 @@ public class FightPanel : MonoBehaviour
         {
             _enemyBestDices.Sort(SortDices);
             _enemyBestDices.RemoveRange(_playerActiveDices.Count, (_enemyBestDices.Count - _playerActiveDices.Count));
+        }
+    }
+
+    private void ApplyPlayerAbilities()
+    {
+        if(_playerAbilities._playerAbilities != null)
+        {
+            foreach(AbilityID id in _playerAbilities._playerAbilities)
+            {
+                Ability ability = _playerAbilities.GetAbility(id);
+                if(ability != null)
+                {
+                    AbilityCard card = Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel);
+                    _playerCards.Add(card);
+                    card.Init();
+                }
+            }
         }
     }
 
@@ -266,6 +287,12 @@ public class FightPanel : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay);
         Time.timeScale = 1f;
         _fightPanel.SetActive(false);
+        foreach(var card in _playerCards)
+        {
+            _playerCards.Remove(card);
+            Destroy(card);
+        }
+        _playerCards.Clear();
     }
 
     private void CompareDices()

@@ -22,6 +22,9 @@ public abstract class AbilityCard : MonoBehaviour
             dh.OnDicePlace -= OnDicePlacement;
     }
 
+    /*
+    *   REQUIRE: use Init() after instantiate!
+    */
     public void Init()
     {
         Fight = FightPanel.Instance;
