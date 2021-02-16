@@ -44,7 +44,7 @@ public class MapEntity : MonoBehaviour
     public void Kill()
     {
         SelectionMinions.Instance.PullEntity.Remove(gameObject);
-        GameManager.Instance.AddResource(GameManager.ResourceType.Minions, -1);
+        ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.Minions, -1);
         Destroy(gameObject);
     }
 
@@ -89,7 +89,7 @@ public class MapEntity : MonoBehaviour
 
         if (_movingHome)
         {
-            GameManager.Instance.AddResource(GameManager.ResourceType.Candles, Candles);
+            ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.Candles, Candles);
             Kill();
         }
         else

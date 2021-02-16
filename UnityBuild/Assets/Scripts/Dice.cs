@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -11,7 +12,7 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private Image _image;
     private Animator _animator;
 
-    public static System.Action<Dice, PointerEventData> OnDicePlacement;
+    public static System.Action<Dice, RaycastResult> OnDicePlacement;
     public static System.Action<Dice> OnDiceRoll;
 
     public void Start()
@@ -65,13 +66,6 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         SetImageByValue();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (_playerOwner == false || Value != -1) return;
-        RollWithAnim();
-        OnDicePlacement?.Invoke(this, eventData);
-    }
-
     public void SetImageByValue()
     {
         if(_image == null)
@@ -82,6 +76,17 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             _image.sprite = _defaultSprite;
     }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        //Disable raycast
+        _image.raycastTarget = false;
+
+        if (_playerOwner == false || Value != -1) return;
+        RollWithAnim();
+        RaycastResult result = eventData.pointerCurrentRaycast;
+        OnDicePlacement?.Invoke(this, result);
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         if (_playerOwner == false) return;
@@ -90,7 +95,13 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (_playerOwner == false) return;
-        OnDicePlacement?.Invoke(this, eventData);
+        if (_playerOwner == true)
+        {
+            RaycastResult result = eventData.pointerCurrentRaycast;
+            OnDicePlacement?.Invoke(this, result);
+        }
+        
+        //Enable raycast
+        _image.raycastTarget = true;
     }
 }

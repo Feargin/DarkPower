@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TextUpdate : MonoBehaviour
 {
-    [SerializeField] private GameManager.ResourceType _resourceType;
+    [SerializeField] private ResourceHolder.ResourceType _resourceType;
     private Text _text;
 
     private void Start()
@@ -13,15 +13,15 @@ public class TextUpdate : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnResourceChange += OnResourceChange;
+        ResourceHolder.Instance.OnResourceChange += OnResourceChange;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnResourceChange -= OnResourceChange;
+        ResourceHolder.Instance.OnResourceChange -= OnResourceChange;
     }
 
-    private void OnResourceChange(GameManager.ResourceType type, int amount)
+    private void OnResourceChange(ResourceHolder.ResourceType type, int amount)
     {
         if(_resourceType == type)
             _text.text = "" + amount;

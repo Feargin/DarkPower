@@ -16,7 +16,7 @@ public class DepartureMinions : MonoBehaviour
 
     public void Departure()
     {
-        if (GameManager.Instance.GetResource(GameManager.ResourceType.Minions) >= 2)
+        if (ResourceHolder.Instance.GetResource(ResourceHolder.ResourceType.Minions) >= 2)
         {
             _MessagePanel.SetActive(true);
             return;
@@ -46,8 +46,8 @@ public class DepartureMinions : MonoBehaviour
                 });
             entity._pathChunksParent = _pathChunksParent;
             UIManager.Instance.EnablePanel(_map);
-            GameManager.Instance.AddResource(GameManager.ResourceType.Minions, 1);
-            GameManager.Instance.AddResource(GameManager.ResourceType.PowerDise, _diceCount);
+            ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.Minions, 1);
+            ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.PowerDise, _diceCount);
             _diceCount = 0;
         }
 
