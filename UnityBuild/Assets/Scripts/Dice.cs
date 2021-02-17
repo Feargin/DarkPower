@@ -51,15 +51,15 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void RollWithAnim(bool setRandValue = true)
     {
-        if (Value == -1)
-        {
+        //if (Value == -1)
+        //{
             if (_animator == null)
                 _animator = GetComponent<Animator>();
             if(setRandValue)
                 Value = DiceController.RollD6();
             SetRollAnimation();
             OnDiceRoll?.Invoke(this);
-        }
+        //}
     }
 
     public void SetRollAnimation()

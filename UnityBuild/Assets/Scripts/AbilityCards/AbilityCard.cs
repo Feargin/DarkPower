@@ -65,8 +65,9 @@ public abstract class AbilityCard : MonoBehaviour
             var dices = Fight.GetPlayerDice();
             foreach(DiceHolder dh in _diceHolders)
             {
+                if(_hideDiceOnUse)
+                    dices.Remove(dh.ContainedDice);
                 dh.DeselectDice(_hideDiceOnUse);
-                dices.Remove(dh.ContainedDice);
             }
             CheckAvailable();
         }

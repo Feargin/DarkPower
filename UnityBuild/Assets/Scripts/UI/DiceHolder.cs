@@ -7,8 +7,8 @@ public class DiceHolder : MonoBehaviour
     [SerializeField, Range(1, 6)] private int _maxValue = 6;
     [SerializeField] private DiceHolder _sameValueRequired;
     public bool canPlayerPlaceDice = true;
-    public AbilityCard Ability;
-    public Dice ContainedDice;
+    [HideInInspector] public AbilityCard Ability;
+    [HideInInspector] public Dice ContainedDice;
 
     public System.Action<DiceHolder, AbilityCard> OnDicePlace;
 
