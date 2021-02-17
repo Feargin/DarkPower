@@ -235,7 +235,7 @@ public class FightPanel : MonoBehaviour
             if(_playerActiveDices[i].Value != -1)
                 continue;
             _playerActiveDices[i].RollWithAnim();
-            yield return new WaitForSecondsRealtime(Random.Range(0.1f,0.3f));
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 
@@ -286,13 +286,12 @@ public class FightPanel : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delay);
         Time.timeScale = 1f;
-        _fightPanel.SetActive(false);
-        foreach(var card in _playerCards)
+        for(int i = 0; i <_playerCards.Count; i++)
         {
-            _playerCards.Remove(card);
-            Destroy(card);
+            Destroy(_playerCards[i].gameObject);
         }
         _playerCards.Clear();
+        _fightPanel.SetActive(false);
     }
 
     private void CompareDices()

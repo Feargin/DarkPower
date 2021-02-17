@@ -12,6 +12,7 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private Image _image;
     private Animator _animator;
 
+    public static System.Action<Dice, RaycastResult> OnDiceBeginDrag;
     public static System.Action<Dice, RaycastResult> OnDicePlacement;
     public static System.Action<Dice> OnDiceRoll;
 
@@ -48,17 +49,23 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
     }
 
-    public void RollWithAnim()
+    public void RollWithAnim(bool setRandValue = true)
     {
         if (Value == -1)
         {
             if (_animator == null)
                 _animator = GetComponent<Animator>();
-            Value = DiceController.RollD6();
-            _animator.SetTrigger("Roll");
+            if(setRandValue)
+                Value = DiceController.RollD6();
+            SetRollAnimation();
             OnDiceRoll?.Invoke(this);
-            MusicManager.Instance.PlaySound(2);
         }
+    }
+
+    public void SetRollAnimation()
+    {
+        _animator.SetTrigger("Roll");
+        MusicManager.Instance.PlaySound(2);
     }
 
     public void OnMiddleRollAnimationEvent()
@@ -80,11 +87,11 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         //Disable raycast
         _image.raycastTarget = false;
+        RaycastResult result = eventData.pointerCurrentRaycast;
+        OnDiceBeginDrag?.Invoke(this, result);
 
         if (_playerOwner == false || Value != -1) return;
         RollWithAnim();
-        RaycastResult result = eventData.pointerCurrentRaycast;
-        OnDicePlacement?.Invoke(this, result);
     }
 
     public void OnDrag(PointerEventData eventData)

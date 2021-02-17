@@ -1,10 +1,13 @@
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public abstract class AbilityCard : MonoBehaviour
 {
     [SerializeField] protected DiceHolder[] _diceHolders;
+    [SerializeField] protected GameObject _disablePanel;
+    protected bool _hideDiceOnUse = true;
 
-    //Require refactoring: separate FightPanel class to ??? and CurrentFightStats
+    //Require refactoring: separate FightPanel class to ??? and CurrentFightStats 
     private FightPanel Fight;
 
     public abstract void UseAbility(FightPanel fight);
@@ -14,12 +17,14 @@ public abstract class AbilityCard : MonoBehaviour
     {
         foreach(DiceHolder dh in _diceHolders)
             dh.OnDicePlace += OnDicePlacement;
+        Dice.OnDicePlacement += OnAnyDicePlacement;
     }
 
     private void OnDisable()
     {
         foreach(DiceHolder dh in _diceHolders)
             dh.OnDicePlace -= OnDicePlacement;
+        Dice.OnDicePlacement -= OnAnyDicePlacement;
     }
 
     /*
@@ -35,6 +40,17 @@ public abstract class AbilityCard : MonoBehaviour
         }
     }
 
+    public void CheckAvailable()
+    {
+        if(!CanUse(Fight))
+        {
+            foreach(DiceHolder dh in _diceHolders)
+                dh.canPlayerPlaceDice = false;
+            if(_disablePanel != null)
+                _disablePanel.SetActive(true);
+        }
+    }
+
     private void OnDicePlacement(DiceHolder holder, AbilityCard card)
     {
         int diceAmount = 0;
@@ -46,13 +62,18 @@ public abstract class AbilityCard : MonoBehaviour
         if(diceAmount == _diceHolders.Length)
         {
             UseAbility(Fight);
+            var dices = Fight.GetPlayerDice();
             foreach(DiceHolder dh in _diceHolders)
-                dh.DeselectDice();
-            if(!CanUse(Fight))
             {
-                foreach(DiceHolder dh in _diceHolders)
-                    dh.canPlayerPlaceDice = false;
+                dh.DeselectDice(_hideDiceOnUse);
+                dices.Remove(dh.ContainedDice);
             }
+            CheckAvailable();
         }
+    }
+
+    private void OnAnyDicePlacement(Dice dice, RaycastResult result)
+    {
+        CheckAvailable();
     }
 }

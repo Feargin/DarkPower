@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum AbilityID{
     Slayer,
-    Control
+    Banner
 }
 
 public class AbilityHolder : MonoBehaviour

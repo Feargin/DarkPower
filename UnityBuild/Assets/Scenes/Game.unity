@@ -2480,108 +2480,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225826116}
   m_CullTransparentMesh: 1
---- !u!1001 &233322240
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1175952717}
-    m_Modifications:
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 286.5172
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 214.2359
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 212.29155
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -182.29828
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371652883881216545, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-      propertyPath: m_Name
-      value: Slayer Card
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
---- !u!224 &233322241 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 371652883881216544, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
-  m_PrefabInstance: {fileID: 233322240}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &254004930
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,6 +3920,8 @@ MonoBehaviour:
   _allAbilities:
   - ID: 0
     Card: {fileID: 371652883881216547, guid: d0fa17895fdd30440a5f14d267ef1e5a, type: 3}
+  - ID: 1
+    Card: {fileID: 1319338995076951035, guid: 5f60a5bf1dec81648a3790a8ac3a7c50, type: 3}
 --- !u!114 &290726182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4034,7 +3934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67abdfda53ca5f148be94f556bd49d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAbilities: 00000000
+  _playerAbilities: 0100000000000000
 --- !u!1 &296338163
 GameObject:
   m_ObjectHideFlags: 0
@@ -11379,7 +11279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6410c60b01c41064e844e6e68fe88577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredValue: 0
+  _minValue: 1
+  _maxValue: 6
+  _sameValueRequired: {fileID: 0}
   canPlayerPlaceDice: 0
   Ability: {fileID: 0}
   ContainedDice: {fileID: 0}
@@ -15841,8 +15743,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 233322241}
+  m_Children: []
   m_Father: {fileID: 787008123}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16088,7 +15989,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6410c60b01c41064e844e6e68fe88577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredValue: 0
+  _minValue: 1
+  _maxValue: 6
+  _sameValueRequired: {fileID: 0}
   canPlayerPlaceDice: 1
   Ability: {fileID: 0}
   ContainedDice: {fileID: 0}
