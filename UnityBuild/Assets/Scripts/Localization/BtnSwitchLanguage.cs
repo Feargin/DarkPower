@@ -22,14 +22,14 @@ public class BtnSwitchLanguage: MonoBehaviour
         {
             case 0:
             if (Application.platform == RuntimePlatform.Android) 
-                LocalizationManager.Instance.StartCoroutine(LocalizationManager.Instance.LoadLocalizedTextAndroid("en_US"));
+                LocalizationManager.Instance.LoadLocalizedTextAndroid("en_US");
             else
                 LocalizationManager.Instance.LoadLocalizedText("en_US");
             
             break;
             case 1:
             if (Application.platform == RuntimePlatform.Android) 
-                LocalizationManager.Instance.StartCoroutine(LocalizationManager.Instance.LoadLocalizedTextAndroid("ru_RU"));
+                LocalizationManager.Instance.LoadLocalizedTextAndroid("ru_RU");
             else
                 LocalizationManager.Instance.LoadLocalizedText("ru_RU");
             break;

@@ -52,25 +52,25 @@ public class LocalizationManager : MonoBehaviour
         _currentLanguage = PlayerPrefs.GetString("Language");
  
         if (Application.platform == RuntimePlatform.Android) 
-            StartCoroutine(LoadLocalizedTextAndroid(_currentLanguage));
+            LoadLocalizedTextAndroid(_currentLanguage);
         else
             LoadLocalizedText(_currentLanguage);
             
     }       
  
-    public IEnumerator LoadLocalizedTextAndroid(string langName)
+    public void LoadLocalizedTextAndroid(string langName)
     {
-        string path = Path.Combine(Application.streamingAssetsPath + "/Languages/" + langName + ".json");
+        //string path = Path.Combine("jar:file://" + Application.dataPath + "!assets/Languages/" + langName + ".json");
+        var path = Resources.Load("Languages/" + langName) as TextAsset; 
         string dataAsJson;
-        UnityWebRequest reader = UnityWebRequest.Get(path);
-        yield return reader.SendWebRequest();
-        Debug.LogWarning(path);
-        if (reader.error != null)
+        //UnityWebRequest reader = UnityWebRequest.Get(path.text);
+        //yield return reader.SendWebRequest();
+        //Debug.LogWarning(path);
+        if (!path)
         {
-            Debug.LogWarning(reader.error);
-            yield break;
-        } 
-        dataAsJson = reader.downloadHandler.text;
+            throw new Exception("Localized text with " + path);
+        }
+        dataAsJson = path.text;
         LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
  
         _localizedText = new Dictionary<string, string>();
@@ -91,23 +91,23 @@ public class LocalizationManager : MonoBehaviour
         _localizedText = new Dictionary<string, string>();
 
 
-        string filePath = Path.Combine(Application.streamingAssetsPath, "Languages/" + langName + ".json");
-
-        //Debug.Log(filePath);
-        if (File.Exists(filePath))
+        //string filePath = Path.Combine(Application.streamingAssetsPath, "Languages/" + langName + ".json");
+        var filePath = Resources.Load("Languages/" + langName) as TextAsset;
+        Debug.Log(filePath);
+        if (filePath)
         {
-            string dataAsJson = File.ReadAllText(filePath);
+            string dataAsJson = filePath.text;
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
 
             for (int i = 0; i < loadedData.items.Length; i++)
             {
                 _localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
-            //Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
+            Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
         }
         else
         {
-            //Debug.LogError("Невозможно найти файл!");
+            Debug.LogError("Невозможно найти файл!");
         }
         PlayerPrefs.SetString("Language", langName);
         _currentLanguage = PlayerPrefs.GetString("Language");
