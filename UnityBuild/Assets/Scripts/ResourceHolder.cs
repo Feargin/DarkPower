@@ -19,7 +19,7 @@ public class ResourceHolder : MonoBehaviour
         PowerDise
     }
 
-    private Dictionary<ResourceType, int> _resources = new Dictionary<ResourceType, int>();
+    private readonly Dictionary<ResourceType, int> _resources = new Dictionary<ResourceType, int>();
 
     private void Awake()
     {
@@ -40,11 +40,9 @@ public class ResourceHolder : MonoBehaviour
 
     public void AddResource(ResourceType type, int amount)
     {
-        if(_resources.ContainsKey(type))
-        {
-            _resources[type] += amount;
-            OnResourceChange?.Invoke(type, amount);
-        }
+        if (!_resources.ContainsKey(type)) return;
+        _resources[type] += amount;
+        OnResourceChange?.Invoke(type, amount);
     }
     public int GetResource (ResourceType resource)
     {

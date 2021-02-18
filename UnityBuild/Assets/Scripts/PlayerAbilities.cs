@@ -28,10 +28,6 @@ public class PlayerAbilities : MonoBehaviour
 
     public Ability GetAbility(AbilityID id)
     {
-        if(_playerAbilities.Contains(id))
-        {
-            return _abilityHolder.GetAbility(id);
-        }
-        return null;
+        return _playerAbilities.Contains(id) ? _abilityHolder.GetAbility(id) : null;
     }
 }

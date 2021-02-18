@@ -41,7 +41,7 @@ public class MapEntity : MonoBehaviour
         }
     }
 
-    public void Kill()
+    private void Kill()
     {
         SelectionMinions.Instance.PullEntity.Remove(gameObject);
         ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.Minions, -1);

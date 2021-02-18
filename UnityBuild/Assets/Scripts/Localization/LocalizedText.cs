@@ -1,46 +1,48 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
-public class LocalizedText : MonoBehaviour
+namespace Localization
 {
-    [SerializeField]
-    private string _key;
-    private TextMeshProUGUI _text;
- 
-    private void Awake()
+    [RequireComponent(typeof(TextMeshProUGUI))]
+    public class LocalizedText : MonoBehaviour
     {
-        if(_text == null)
+        [SerializeField] private string _key;
+        private TextMeshProUGUI _text;
+ 
+        private void Awake()
         {
-            _text = GetComponent<TextMeshProUGUI>();
-        }
+            if(_text == null)
+            {
+                _text = GetComponent<TextMeshProUGUI>();
+            }
         
-    }
- 
-    private void Start()
-    {
-        LocalizationManager.Instance.OnLanguageChanged += UpdateText;
-        UpdateText();
-
-    }
- 
-    private void OnDestroy()
-    {
-        LocalizationManager.Instance.OnLanguageChanged -= UpdateText;
-    }
-    private void OnDisable() 
-    {
-        LocalizationManager.Instance.OnLanguageChanged -= UpdateText;
-    }
-
- 
-    virtual protected void UpdateText()
-    {
-        if (gameObject == null) return;
-        if (_text == null)
-        {
-            _text = GetComponent<TextMeshProUGUI>();
         }
-        _text.text = LocalizationManager.Instance.GetLocalizedValue(_key);
+ 
+        private void Start()
+        {
+            LocalizationManager.Instance.OnLanguageChanged += UpdateText;
+            UpdateText();
+
+        }
+ 
+        private void OnDestroy()
+        {
+            LocalizationManager.Instance.OnLanguageChanged -= UpdateText;
+        }
+        private void OnDisable() 
+        {
+            LocalizationManager.Instance.OnLanguageChanged -= UpdateText;
+        }
+
+ 
+        protected virtual void UpdateText()
+        {
+            if (gameObject == null) return;
+            if (_text == null)
+            {
+                _text = GetComponent<TextMeshProUGUI>();
+            }
+            _text.text = LocalizationManager.Instance.GetLocalizedValue(_key);
+        }
     }
 }

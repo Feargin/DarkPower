@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Camera;
 
 public class Settings : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class Settings : MonoBehaviour
         else
             throw new System.Exception("Нет AudioSource на MusicManager.");
         if(MusicManager.Instance.gameObject.GetComponent<AudioSource>())
-            _audioSourceMusic = Camera.main.GetComponent<AudioSource>();
+        {
+            if (main is { }) _audioSourceMusic = main.GetComponent<AudioSource>();
+        }
         else
             throw new System.Exception("Нет AudioSource на Camera.");
     }
