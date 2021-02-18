@@ -11,6 +11,7 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private GraphicRaycaster _raycaster;
     [SerializeField] private GameObject _fightPanel;
     [SerializeField] private GameObject _randomDicePanel;
+    [SerializeField] private GameObject _surrenderButton;
     [SerializeField] private HorizontalLayoutGroup _playerLayourtGroup;
     [SerializeField] private TextMeshProUGUI _playerVictoryPoints;
     [SerializeField] private TextMeshProUGUI _enemyVictoryPoints;
@@ -114,6 +115,7 @@ public class FightPanel : MonoBehaviour
 
     private void InitFight()
     {
+        _surrenderButton.gameObject.SetActive(true);
         _enemyCubePos.gameObject.SetActive(true);
         _playerCubePos.gameObject.SetActive(true);
         _fightPanel.SetActive(true);
@@ -235,7 +237,7 @@ public class FightPanel : MonoBehaviour
             if(_playerActiveDices[i].Value != -1)
                 continue;
             _playerActiveDices[i].RollWithAnim();
-            yield return new WaitForSecondsRealtime(Random.Range(0.1f,0.3f));
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 
@@ -256,6 +258,7 @@ public class FightPanel : MonoBehaviour
     {
         _enemyCubePos.gameObject.SetActive(false);
         _playerCubePos.gameObject.SetActive(false);
+        _surrenderButton.gameObject.SetActive(false);
         if (_playerScore < _enemyScore)
         {
             _reward = 0;
@@ -286,13 +289,12 @@ public class FightPanel : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delay);
         Time.timeScale = 1f;
-        _fightPanel.SetActive(false);
-        foreach(var card in _playerCards)
+        for(int i = 0; i <_playerCards.Count; i++)
         {
-            _playerCards.Remove(card);
-            Destroy(card);
+            Destroy(_playerCards[i].gameObject);
         }
         _playerCards.Clear();
+        _fightPanel.SetActive(false);
     }
 
     private void CompareDices()
@@ -344,6 +346,7 @@ public class FightPanel : MonoBehaviour
 
     private IEnumerator LateEndFight()
     {
+        _surrenderButton.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(3f);
         EndFight();
     }
@@ -372,15 +375,40 @@ public class FightPanel : MonoBehaviour
         _playerDice.DeselectDice();
         _enemyDice.DeselectDice();
         _readyToPlace = true;
-
         if (_enemyBestDices.Count == 0 || _playerActiveDices.Count == 0)
         {
-            if(_enemyScore == _playerScore)
-            {
-                EnableRandomVictory();
-            }
-            else EndFight();
+            ForceEndBattle();
         }
+    }
+
+    public void ForceEndBattle()
+    {
+        if(_enemyScore == _playerScore)
+        {
+            EnableRandomVictory();
+        }
+        else EndFight();
+    }
+
+    public void Surrender()
+    {
+        _playerScore = 0;
+        _enemyScore = 10;
+        
+        int destroyAmount = 2;
+
+        if(_playerActiveDices.Count > 0)
+        {
+            for(int i = 0; i < _playerActiveDices.Count ; i++)
+            {
+                _playerActiveDices.RemoveAt(0);
+                destroyAmount--;
+                if(destroyAmount == 0)
+                    break;
+            }
+        }
+        _surrenderButton.SetActive(false);
+        EndFight();
     }
 
     public List<Dice> GetEnemyDice() => _enemyBestDices;

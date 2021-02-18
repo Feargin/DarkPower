@@ -4,7 +4,9 @@ using UnityEngine;
 
 public enum AbilityID{
     Slayer,
-    Control
+    Banner,
+    RitualDagger,
+    ScrollOfLuck
 }
 
 public class AbilityHolder : MonoBehaviour

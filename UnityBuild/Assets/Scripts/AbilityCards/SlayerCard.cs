@@ -24,6 +24,6 @@ public class SlayerCard : AbilityCard
 
     public override bool CanUse(FightPanel fight)
     {
-        return fight.GetEnemyDice().Count > 1;
+        return fight.GetEnemyDice().Count > 1 && fight.GetPlayerDice().Count > 2;
     }
 }

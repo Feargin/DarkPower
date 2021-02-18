@@ -125,7 +125,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3835324705788282440}
         m_TargetAssemblyTypeName: Dice, Assembly-CSharp
         m_MethodName: RollWithAnim
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
