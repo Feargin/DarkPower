@@ -15,6 +15,7 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public static System.Action<Dice, RaycastResult> OnDiceBeginDrag;
     public static System.Action<Dice, RaycastResult> OnDicePlacement;
     public static System.Action<Dice> OnDiceRoll;
+    private static readonly int Roll1 = Animator.StringToHash("Roll");
 
     public void Start()
     {
@@ -39,14 +40,12 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void Roll(bool updateSprite = true)
     {
-        if (Value == -1)
-        {
-            Value = DiceController.RollD6();
-            if(updateSprite)
-                SetImageByValue();
-            OnDiceRoll?.Invoke(this);
-            MusicManager.Instance.PlaySound(2);
-        }
+        if (Value != -1) return;
+        Value = DiceController.RollD6();
+        if(updateSprite)
+            SetImageByValue();
+        OnDiceRoll?.Invoke(this);
+        MusicManager.Instance.PlaySound(2);
     }
 
     public void RollWithAnim(bool setRandValue = true)
@@ -64,7 +63,7 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void SetRollAnimation()
     {
-        _animator.SetTrigger("Roll");
+        _animator.SetTrigger(Roll1);
         MusicManager.Instance.PlaySound(2);
     }
 
@@ -77,10 +76,7 @@ public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         if(_image == null)
             _image = GetComponent<Image>();
-        if (Value != -1)
-            _image.sprite = _spritesValue[Value - 1];
-        else
-            _image.sprite = _defaultSprite;
+        _image.sprite = Value != -1 ? _spritesValue[Value - 1] : _defaultSprite;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

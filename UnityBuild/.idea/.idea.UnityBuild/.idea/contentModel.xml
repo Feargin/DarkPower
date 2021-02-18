@@ -374,6 +374,9 @@
         <e p="Scripts" t="Include">
           <e p="AbilityCards" t="Include">
             <e p="AbilityCard.cs" t="Include" />
+            <e p="BannerCard.cs" t="Include" />
+            <e p="RitualDaggerCard.cs" t="Include" />
+            <e p="ScrollOfLuckCard.cs" t="Include" />
             <e p="SlayerCard.cs" t="Include" />
           </e>
           <e p="AbilityHolder.cs" t="Include" />

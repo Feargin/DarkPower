@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum AbilityID{
@@ -15,14 +16,7 @@ public class AbilityHolder : MonoBehaviour
     
     public Ability GetAbility(AbilityID id)
     {
-        foreach(Ability a in _allAbilities)
-        {
-            if(a.ID == id)
-            {
-                return a;
-            }
-        }
-        return null;
+        return _allAbilities.FirstOrDefault(a => a.ID == id);
     }
 }
 

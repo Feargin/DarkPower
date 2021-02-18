@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -29,12 +30,12 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private Transform _playerAbilitiesPanel;
     [SerializeField] private PlayerAbilities _playerAbilities;
 
-    private List<Dice> _enemyActiveDices = new List<Dice>();
-    private List<Dice> _enemyBestDices = new List<Dice>();
-    private List<Dice> _playerActiveDices = new List<Dice>();
-    private List<AbilityCard> _playerCards = new List<AbilityCard>();
+    private readonly List<Dice> _enemyActiveDices = new List<Dice>();
+    private readonly List<Dice> _enemyBestDices = new List<Dice>();
+    private readonly List<Dice> _playerActiveDices = new List<Dice>();
+    private readonly List<AbilityCard> _playerCards = new List<AbilityCard>();
 
-    public static System.Action<int> OnFightEnd;
+    private static System.Action<int> _onFightEnd;
 
     private int _playerScore = 0;
     private int _enemyScore = 0;
@@ -70,12 +71,12 @@ public class FightPanel : MonoBehaviour
 
     private void OnDisable()
     {
-        MapEntity.OnTargetArrived -= StartFight;
-        _playerDice.OnDicePlace -= OnDicePlacement;
-        Dice.OnDiceRoll -= OnDiceRoll;
+        if (MapEntity.OnTargetArrived != null) MapEntity.OnTargetArrived -= StartFight;
+        if (_playerDice is { }) _playerDice.OnDicePlace -= OnDicePlacement;
+        if (Dice.OnDiceRoll != null) Dice.OnDiceRoll -= OnDiceRoll;
     }
 
-    public void StartFight(MapEntity entity, Marker marker)
+    private void StartFight(MapEntity entity, Marker marker)
     {
         if (marker.StarCount == 0)
             return;
@@ -108,6 +109,8 @@ public class FightPanel : MonoBehaviour
                 ResourceHolder.Instance.BonusFightDices++;
                 _resultText.text += "\nParmanent: +1 Combat Dice";
                 break;
+            case Marker.MarkerBonus.none:
+                break;
             default:
                 break;
         }
@@ -139,11 +142,9 @@ public class FightPanel : MonoBehaviour
         {
             _playerDices[i].Disable();
             _playerDices[i].gameObject.SetActive(false);
-            if (i < _minion.DiceCount * 2 + ResourceHolder.Instance.BonusFightDices)
-            {
-                _playerDices[i].gameObject.SetActive(true);
-                _playerActiveDices.Add(_playerDices[i]);
-            }
+            if (i >= _minion.DiceCount * 2 + ResourceHolder.Instance.BonusFightDices) continue;
+            _playerDices[i].gameObject.SetActive(true);
+            _playerActiveDices.Add(_playerDices[i]);
         }
     }
 
@@ -153,12 +154,10 @@ public class FightPanel : MonoBehaviour
         for (int i = 0; i < _enemyDices.Count; i++)
         {
             _enemyDices[i].gameObject.SetActive(false);
-            if (i < _marker.StarCount * 2)
-            {
-                _enemyDices[i].gameObject.SetActive(true);
-                _enemyDices[i].Roll();
-                _enemyActiveDices.Add(_enemyDices[i]);
-            }
+            if (i >= _marker.StarCount * 2) continue;
+            _enemyDices[i].gameObject.SetActive(true);
+            _enemyDices[i].Roll();
+            _enemyActiveDices.Add(_enemyDices[i]);
         }
         SortEnemyDicesPull();
     }
@@ -170,28 +169,19 @@ public class FightPanel : MonoBehaviour
         {
             _enemyBestDices.Add(d);
         }
-        
-        if (_enemyBestDices.Count > _playerActiveDices.Count)
-        {
-            _enemyBestDices.Sort(SortDices);
-            _enemyBestDices.RemoveRange(_playerActiveDices.Count, (_enemyBestDices.Count - _playerActiveDices.Count));
-        }
+
+        if (_enemyBestDices.Count <= _playerActiveDices.Count) return;
+        _enemyBestDices.Sort(SortDices);
+        _enemyBestDices.RemoveRange(_playerActiveDices.Count, (_enemyBestDices.Count - _playerActiveDices.Count));
     }
 
     private void ApplyPlayerAbilities()
     {
-        if(_playerAbilities._playerAbilities != null)
+        if (_playerAbilities._playerAbilities == null) return;
+        foreach (var card in from id in _playerAbilities._playerAbilities select _playerAbilities.GetAbility(id) into ability where ability != null select Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel))
         {
-            foreach(AbilityID id in _playerAbilities._playerAbilities)
-            {
-                Ability ability = _playerAbilities.GetAbility(id);
-                if(ability != null)
-                {
-                    AbilityCard card = Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel);
-                    _playerCards.Add(card);
-                    card.Init();
-                }
-            }
+            _playerCards.Add(card);
+            card.Init();
         }
     }
 
@@ -213,14 +203,10 @@ public class FightPanel : MonoBehaviour
     private IEnumerator EnemyReroll1sDices(float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
-        foreach (Dice dice in _enemyActiveDices)
+        foreach (var dice in _enemyActiveDices.Where(dice => dice.Value == 1))
         {
-            
-            if (dice.Value == 1)
-            {
-                dice.Value = -1;
-                dice.RollWithAnim();
-            }
+            dice.Value = -1;
+            dice.RollWithAnim();
         }
         SortEnemyDicesPull();
     }
@@ -232,16 +218,14 @@ public class FightPanel : MonoBehaviour
 
     private IEnumerator RollDiceWithDelay()
     {
-        for (int i = 0; i < _playerActiveDices.Count; i++)
+        foreach (var t in _playerActiveDices.Where(t => t.Value == -1))
         {
-            if(_playerActiveDices[i].Value != -1)
-                continue;
-            _playerActiveDices[i].RollWithAnim();
+            t.RollWithAnim();
             yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 
-    private int SortDices(Dice d1, Dice d2)
+    private static int SortDices(Dice d1, Dice d2)
     {
         if(d1.Value < d2.Value)
         {
@@ -254,7 +238,7 @@ public class FightPanel : MonoBehaviour
         return 0;
     }
 
-    public void EndFight()
+    private void EndFight()
     {
         _enemyCubePos.gameObject.SetActive(false);
         _playerCubePos.gameObject.SetActive(false);
@@ -269,7 +253,7 @@ public class FightPanel : MonoBehaviour
             _resultText.text = $"Victory:\nCandles + {_reward}";
             ApplyMarkerBonus();
         }
-        OnFightEnd?.Invoke(_reward);
+        _onFightEnd?.Invoke(_reward);
         if(_reward > 0)
         {
             _marker.Disable();
@@ -289,9 +273,9 @@ public class FightPanel : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delay);
         Time.timeScale = 1f;
-        for(int i = 0; i <_playerCards.Count; i++)
+        foreach (var t in _playerCards)
         {
-            Destroy(_playerCards[i].gameObject);
+            Destroy(t.gameObject);
         }
         _playerCards.Clear();
         _fightPanel.SetActive(false);
@@ -313,22 +297,20 @@ public class FightPanel : MonoBehaviour
 
     private void OnDiceRoll(Dice dice)
     {
-        if (_randomDicePanel.activeSelf)
+        if (!_randomDicePanel.activeSelf) return;
+        if (dice.Value <= 3)
         {
-            if (dice.Value <= 3)
-            {
-                _enemyScore++;
-                _randomDiceText1.text = "Lose";
-                _randomDiceText2.gameObject.SetActive(false);
-            }
-            else
-            {
-                _playerScore++;
-                _randomDiceText1.gameObject.SetActive(false);
-                _randomDiceText2.text = "Victory";
-            }
-            StartCoroutine(LateEndFight());
+            _enemyScore++;
+            _randomDiceText1.text = "Lose";
+            _randomDiceText2.gameObject.SetActive(false);
         }
+        else
+        {
+            _playerScore++;
+            _randomDiceText1.gameObject.SetActive(false);
+            _randomDiceText2.text = "Victory";
+        }
+        StartCoroutine(LateEndFight());
     }
 
     private void OnDicePlacement(DiceHolder holder, AbilityCard card)
@@ -381,7 +363,7 @@ public class FightPanel : MonoBehaviour
         }
     }
 
-    public void ForceEndBattle()
+    private void ForceEndBattle()
     {
         if(_enemyScore == _playerScore)
         {

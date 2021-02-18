@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,15 +65,10 @@ public class SelectionMinions : MonoBehaviour
     }
     public void SetTarget ()
     {
-        if(TargetMarker != null)
+        if (TargetMarker == null) return;
+        foreach (var i in PullEntity.Where(i => i.GetComponent<MapEntity>().SelectImage.activeSelf == true))
         {
-            foreach(GameObject i in PullEntity)
-            {
-                if(i.GetComponent<MapEntity>().SelectImage.activeSelf == true)
-                {
-                    i.GetComponent<MapEntity>().MoveTo(TargetMarker);
-                }
-            }
+            i.GetComponent<MapEntity>().MoveTo(TargetMarker);
         }
     }
 }

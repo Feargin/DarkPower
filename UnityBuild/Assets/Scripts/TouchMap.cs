@@ -13,7 +13,7 @@ public class TouchMap : MonoBehaviour
         
     }
 
-    void Update()
+    private void Update()
     {
         if(Input.touchCount == 2)
         {

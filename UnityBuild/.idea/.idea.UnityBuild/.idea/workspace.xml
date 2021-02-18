@@ -31,7 +31,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Localization/LocalizationManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/InfoPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Localization/LocalizedText.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ResourceHolder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SelectionMinions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Settings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CandelsController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DepartureMinions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Dice.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MapEntity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerAbilities.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TouchMap.cs" />
       </list>
     </option>
   </component>
@@ -47,6 +60,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -87,6 +101,7 @@
       <updated>1613467219135</updated>
       <workItem from="1613467224326" duration="197000" />
       <workItem from="1613477885919" duration="3318000" />
+      <workItem from="1613640435692" duration="2790000" />
     </task>
     <servers />
   </component>
@@ -179,5 +194,9 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="179" key="GridCell.Tab.3.right/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421871" />
+    <state x="781" y="165" key="SettingsEditor" timestamp="1613642937671">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="781" y="165" key="SettingsEditor/0.0.2560.1040@0.0.2560.1040" timestamp="1613642937671" />
   </component>
 </project>

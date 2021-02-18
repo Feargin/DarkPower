@@ -14,7 +14,7 @@ public class CandelsController : MonoBehaviour
         
     }
 
-    public void ChangeCountCandels (int countPower)
+    private void ChangeCountCandels (int countPower)
     {
         for (int i = 0; i < _candles.Length; i++)
         {

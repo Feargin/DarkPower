@@ -31,25 +31,23 @@ public class DepartureMinions : MonoBehaviour
         }
         
         _getDiceCount = _diceCount;
-        if(_getDiceCount > 0)
-        {
-            var entityObject = Instantiate(_perfab, _homeMarker.gameObject.transform.position + (Vector3)Random.insideUnitCircle * 100f, Quaternion.identity, _areaSpawn.transform);
-            var entity = entityObject.GetComponent<MapEntity>();
-            entity.DiceCount = _getDiceCount;
-            entity.CurrentMarker = _homeMarker;
-            SelectionMinions.Instance.PullEntity.Add(entityObject);
-            SelectionMinions.Instance.SetHighlighted(entityObject);
-            entityObject.AddComponent<Button>().onClick.AddListener(
-                delegate 
-                { 
-                    SelectionMinions.Instance.SetHighlighted(entityObject); 
-                });
-            entity._pathChunksParent = _pathChunksParent;
-            UIManager.Instance.EnablePanel(_map);
-            ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.Minions, 1);
-            ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.PowerDise, _diceCount);
-            _diceCount = 0;
-        }
+        if (_getDiceCount <= 0) return;
+        var entityObject = Instantiate(_perfab, _homeMarker.gameObject.transform.position + (Vector3)Random.insideUnitCircle * 100f, Quaternion.identity, _areaSpawn.transform);
+        var entity = entityObject.GetComponent<MapEntity>();
+        entity.DiceCount = _getDiceCount;
+        entity.CurrentMarker = _homeMarker;
+        SelectionMinions.Instance.PullEntity.Add(entityObject);
+        SelectionMinions.Instance.SetHighlighted(entityObject);
+        entityObject.AddComponent<Button>().onClick.AddListener(
+            delegate 
+            { 
+                SelectionMinions.Instance.SetHighlighted(entityObject); 
+            });
+        entity._pathChunksParent = _pathChunksParent;
+        UIManager.Instance.EnablePanel(_map);
+        ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.Minions, 1);
+        ResourceHolder.Instance.AddResource(ResourceHolder.ResourceType.PowerDise, _diceCount);
+        _diceCount = 0;
 
     }
     public void GetDicePower (bool get)
@@ -57,13 +55,11 @@ public class DepartureMinions : MonoBehaviour
         if(get && _diceCount < 4)
         {
             _diceCount += 1;
-            for (int i = 0; i < Dices.Length; i++)
+            foreach (var t in Dices)
             {
-                if(Dices[i].sprite == _sprite[0])
-                {
-                    Dices[i].sprite = _sprite[1];
-                    break;
-                }
+                if (t.sprite != _sprite[0]) continue;
+                t.sprite = _sprite[1];
+                break;
             }
         }
         else if(!get)
@@ -71,11 +67,9 @@ public class DepartureMinions : MonoBehaviour
             if(_diceCount > 0) _diceCount -= 1;
             for (int i = Dices.Length - 1; i >= 0; i--)
             {
-                if(Dices[i].sprite == _sprite[1])
-                {
-                    Dices[i].sprite = _sprite[0];
-                    break;
-                }
+                if (Dices[i].sprite != _sprite[1]) continue;
+                Dices[i].sprite = _sprite[0];
+                break;
             }
         }
     }

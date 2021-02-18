@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InfoPanel : MonoBehaviour
 {
-    [SerializeField] private GameObject[] InfoParts;
+    [FormerlySerializedAs("InfoParts")] [SerializeField] private GameObject[] _infoParts;
     private int _currentPartIndex;
 
     private void Start()
@@ -17,15 +18,15 @@ public class InfoPanel : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("FirstStart"))
         {
-            foreach(var part in InfoParts)
+            foreach(var part in _infoParts)
                 part.SetActive(true);
         }
         else
         {
             _currentPartIndex = 0;
-            foreach(var part in InfoParts)
+            foreach(var part in _infoParts)
                 part.SetActive(false);
-            InfoParts[_currentPartIndex].SetActive(true);
+            _infoParts[_currentPartIndex].SetActive(true);
         }
     }
 
@@ -36,11 +37,11 @@ public class InfoPanel : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        InfoParts[_currentPartIndex].SetActive(false);
+        _infoParts[_currentPartIndex].SetActive(false);
         _currentPartIndex++;
-        if(_currentPartIndex < InfoParts.Length)
+        if(_currentPartIndex < _infoParts.Length)
         {
-            InfoParts[_currentPartIndex].SetActive(true);
+            _infoParts[_currentPartIndex].SetActive(true);
         }
         else
         {
