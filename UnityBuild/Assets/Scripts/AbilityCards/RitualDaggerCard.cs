@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RitualDaggerCard : AbilityCard
+internal class RitualDaggerCard : AbilityCard
 {
     private int _maxUses = 2;
 
     //Decrease dice value by 1
-    public override void UseAbility(FightPanel fight)
+    protected override void UseAbility(FightPanel fight)
     {
         _hideDiceOnUse = false;
         _maxUses--;
@@ -16,7 +16,7 @@ public class RitualDaggerCard : AbilityCard
         dice.SetRollAnimation();
     }
 
-    public override bool CanUse(FightPanel fight)
+    protected override bool CanUse(FightPanel fight)
     {
         return _maxUses > 0;
     }

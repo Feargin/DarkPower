@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlayerCard : AbilityCard
+internal class SlayerCard : AbilityCard
 {
     //Destroy 2 random enemy dice
-    public override void UseAbility(FightPanel fight)
+    protected override void UseAbility(FightPanel fight)
     {
         List<Dice> dice = fight.GetEnemyDice();
 
@@ -22,7 +22,7 @@ public class SlayerCard : AbilityCard
         }
     }
 
-    public override bool CanUse(FightPanel fight)
+    protected override bool CanUse(FightPanel fight)
     {
         return fight.GetEnemyDice().Count > 1 && fight.GetPlayerDice().Count > 2;
     }

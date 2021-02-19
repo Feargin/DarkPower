@@ -36,17 +36,22 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ResourceHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Settings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DepartureMinions.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Dice.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SelectionMinions.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CandelsController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Localization/LocalizationManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TouchMap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapEntity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerAbilities.cs" />
-        <option value="$PROJECT_DIR$/Assets/Editor/AbilityHolderEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AbilityHolder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Editor/AbilityHolderEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/AbilityCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/BannerCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/RitualDaggerCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/ScrollOfLuckCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/SlayerCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Dice.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightPanel.cs" />
       </list>
     </option>
   </component>
@@ -106,7 +111,7 @@
       <workItem from="1613640435692" duration="2790000" />
       <workItem from="1613732943326" duration="1448000" />
       <workItem from="1613735725132" duration="158000" />
-      <workItem from="1613736317344" duration="4789000" />
+      <workItem from="1613736317344" duration="6835000" />
     </task>
     <servers />
   </component>

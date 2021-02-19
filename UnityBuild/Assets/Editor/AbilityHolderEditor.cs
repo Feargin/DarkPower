@@ -1,6 +1,4 @@
 using UnityEditor;
-using UnityEngine;
-
 
 [CustomEditor(typeof(AbilityHolder.AbilityID))]
 public class AbilityHolderEditor : EditorWindow

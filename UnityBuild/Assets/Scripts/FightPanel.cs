@@ -9,7 +9,6 @@ using TMPro;
 public class FightPanel : MonoBehaviour
 {   
     [Header("Referenes")]
-    [SerializeField] private GraphicRaycaster _raycaster;
     [SerializeField] private GameObject _fightPanel;
     [SerializeField] private GameObject _randomDicePanel;
     [SerializeField] private GameObject _surrenderButton;
@@ -18,8 +17,6 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _enemyVictoryPoints;
     [SerializeField] private Transform _enemyCubePos;
     [SerializeField] private Transform _playerCubePos;
-    [SerializeField] private Transform _playerDicesParent;
-    [SerializeField] private Transform _enemyDicesParent;
     [SerializeField] private List<Dice> _playerDices;
     [SerializeField] private List<Dice> _enemyDices;
     [SerializeField] private Dice _randomDice;
@@ -178,7 +175,10 @@ public class FightPanel : MonoBehaviour
     private void ApplyPlayerAbilities()
     {
         if (_playerAbilities._playerAbilities == null) return;
-        foreach (var card in from id in _playerAbilities._playerAbilities select _playerAbilities.GetAbility(id) into ability where ability != null select Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel))
+        foreach (var card in from id in _playerAbilities._playerAbilities 
+            select _playerAbilities.GetAbility(id) 
+            into ability where ability != null 
+            select Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel))
         {
             _playerCards.Add(card);
             card.Init();
@@ -193,7 +193,7 @@ public class FightPanel : MonoBehaviour
                 _infoText.text = "Fight effect:\nenemy reroll 1's dices";
                 StartCoroutine(EnemyReroll1sDices(0.75f));
                 break;
-            case Marker.MarkerAbility.none:
+            
             default:
             _infoText.text = "";
                 break;
@@ -211,10 +211,7 @@ public class FightPanel : MonoBehaviour
         SortEnemyDicesPull();
     }
 
-    public void RollAllDices()
-    {
-        StartCoroutine(RollDiceWithDelay());
-    }
+    public void RollAllDices() => StartCoroutine(RollDiceWithDelay());
 
     private IEnumerator RollDiceWithDelay()
     {

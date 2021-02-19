@@ -10,8 +10,8 @@ public abstract class AbilityCard : MonoBehaviour
     //Require refactoring: separate FightPanel class to ??? and CurrentFightStats 
     private FightPanel Fight;
 
-    public abstract void UseAbility(FightPanel fight);
-    public abstract bool CanUse(FightPanel fight);
+    protected abstract void UseAbility(FightPanel fight);
+    protected abstract bool CanUse(FightPanel fight);
 
     private void OnEnable()
     {
@@ -40,7 +40,7 @@ public abstract class AbilityCard : MonoBehaviour
         }
     }
 
-    public void CheckAvailable()
+    private void CheckAvailable()
     {
         if(!CanUse(Fight))
         {
