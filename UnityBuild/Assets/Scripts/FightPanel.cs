@@ -178,23 +178,23 @@ public class FightPanel : MonoBehaviour
             into ability where ability != null 
             select Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel))
         {
-            foreach(AbilityID id in _playerAbilities._playerAbilities)
-            {
-                Ability ability = _playerAbilities.GetAbility(id);
-                if(ability != null)
-                {
-                    AbilityCard card = Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel);
+            //foreach(AbilityHolder.AbilityID id in _playerAbilities._playerAbilities)
+            //{
+               // AbilityHolder.Ability ability = _playerAbilities.GetAbility(id);
+               // if(ability != null)
+               // {
+                    //AbilityCard card2 = Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel);
                     _playerCards.Add(card);
                     card.Init(true);
-                }
-            }
+               // }
+            //}
         }
     }
 
     private void ApplyEnemyAbilities()
     {
-        List<AbilityID> abilities = new List<AbilityID>(_marker._possibleAbilities);
-        List<AbilityID> newAbilities = new List<AbilityID>();
+        List<AbilityHolder.AbilityID> abilities = new List<AbilityHolder.AbilityID>(_marker._possibleAbilities);
+        List<AbilityHolder.AbilityID> newAbilities = new List<AbilityHolder.AbilityID>();
         for(int i = 0; i < _marker.AmoutOfAbilities; i++) 
         {
             if(abilities.Count == 0)
@@ -204,9 +204,9 @@ public class FightPanel : MonoBehaviour
             abilities.RemoveAt(index);
         }
         
-        foreach(AbilityID id in newAbilities)
+        foreach(AbilityHolder.AbilityID id in newAbilities)
         {
-            Ability ability = _playerAbilities._abilityHolder.GetAbility(id);
+            AbilityHolder.Ability ability = _playerAbilities._abilityHolder.GetAbility(id);
             if(ability != null)
             {
                 AbilityCard card = Instantiate(ability.Card, _enemyAbilitiesPanel.position, Quaternion.identity, _enemyAbilitiesPanel);
@@ -290,7 +290,7 @@ public class FightPanel : MonoBehaviour
         //Clear player cards
         for(int i = 0; i <_playerCards.Count; i++)
         {
-            Destroy(t.gameObject);
+            Destroy(_playerCards[i].gameObject);
         }
         _playerCards.Clear();
 

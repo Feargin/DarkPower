@@ -6,7 +6,7 @@ public class Marker : MonoBehaviour
     public int StarCount;
     public MarkerBonus BonusLoot;
     public int AmoutOfAbilities;
-    public List<AbilityID> _possibleAbilities;
+    public List<AbilityHolder.AbilityID> _possibleAbilities;
     //public MarkerAbility Ability;
     [SerializeField] private GameObject [] _stars;
     [SerializeField] private GameObject _starPanel;
@@ -38,11 +38,5 @@ public class Marker : MonoBehaviour
     {
         none,
         bonusFightDice
-    }
-
-    public enum MarkerAbility
-    {
-        none,
-        reroll1s
     }
 }

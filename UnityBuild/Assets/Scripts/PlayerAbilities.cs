@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AbilityHolder))]
 public class PlayerAbilities : MonoBehaviour
 {
-    public List<AbilityID> _playerAbilities;
+    public List<AbilityHolder.AbilityID> _playerAbilities;
     [HideInInspector] public AbilityHolder _abilityHolder;
 
     private void Start() => _abilityHolder = GetComponent<AbilityHolder>();
