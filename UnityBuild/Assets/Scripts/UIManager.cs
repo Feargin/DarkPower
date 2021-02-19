@@ -22,10 +22,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        EnablePanel(_initialPanel);
-    }
+    private void Start() => EnablePanel(_initialPanel);
 
     public void EnablePanel(GameObject panel)
     {

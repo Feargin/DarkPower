@@ -12,7 +12,7 @@ namespace Localization
         public static LocalizationManager Instance;
         private string _currentLanguage;
         private Dictionary<string, string> _localizedText;
-        [SerializeField] private bool _isReady = false;
+        //[SerializeField] private bool _isReady = false;
         public Action OnLanguageChanged;
         public string CurrentLanguage
         {
@@ -85,7 +85,7 @@ namespace Localization
         
             PlayerPrefs.SetString("Language", langName);
             _currentLanguage = PlayerPrefs.GetString("Language");
-            _isReady = true;
+            //_isReady = true;
             OnLanguageChanged?.Invoke();
         }
 
@@ -118,7 +118,7 @@ namespace Localization
             }
             PlayerPrefs.SetString("Language", langName);
             _currentLanguage = PlayerPrefs.GetString("Language");
-            _isReady = true;
+            //_isReady = true;
             OnLanguageChanged?.Invoke();
         }
  

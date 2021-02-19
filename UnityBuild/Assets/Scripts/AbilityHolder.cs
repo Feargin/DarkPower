@@ -1,28 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum AbilityID{
-    Slayer,
-    Banner,
-    RitualDagger,
-    ScrollOfLuck
-}
+
 
 public class AbilityHolder : MonoBehaviour
 {
     [SerializeField] private Ability[] _allAbilities;
+    public AbilityID AbilityId;
     
-    public Ability GetAbility(AbilityID id)
+    public Ability GetAbility(AbilityID id) 
     {
         return _allAbilities.FirstOrDefault(a => a.ID == id);
     }
+    public enum AbilityID
+    {
+        Slayer,
+        Banner,
+        RitualDagger,
+        ScrollOfLuck
+    }
+    [System.Serializable]
+    public class Ability
+    {
+        public AbilityID ID;
+        public AbilityCard Card;
+    }
 }
 
-[System.Serializable]
-public class Ability
-{
-    public AbilityID ID;
-    public AbilityCard Card;
-}
+

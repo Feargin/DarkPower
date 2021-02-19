@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(AbilityHolder))]
 public class PlayerAbilities : MonoBehaviour
 {
-    public List<AbilityID> _playerAbilities;
+    public List<AbilityHolder.AbilityID> _playerAbilities;
     private AbilityHolder _abilityHolder;
 
     private void Start() => _abilityHolder = GetComponent<AbilityHolder>();
 
-    public void AddAbility(AbilityID id)
+    public void AddAbility(AbilityHolder.AbilityID id)
     {
         if(_playerAbilities.Contains(id) == false)
         {
@@ -18,7 +18,7 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
-    public void RemoveAbility(AbilityID id)
+    public void RemoveAbility(AbilityHolder.AbilityID id)
     {
         if(_playerAbilities.Contains(id))
         {
@@ -26,7 +26,7 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
-    public Ability GetAbility(AbilityID id)
+    public AbilityHolder.Ability GetAbility(AbilityHolder.AbilityID id)
     {
         return _playerAbilities.Contains(id) ? _abilityHolder.GetAbility(id) : null;
     }

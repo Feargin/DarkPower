@@ -24,14 +24,11 @@ public class MapEntity : MonoBehaviour
     private List<GameObject> _path = new List<GameObject>();
     private Marker _homeMarker;
     private Marker _moveTarget;
-    private Vector3 direction;
+    private Vector3 _direction;
     private bool _movingHome;
     
 
-    private void Start()
-    {
-        _homeMarker = CurrentMarker;
-    }
+    private void Start() => _homeMarker = CurrentMarker;
 
     private void OnEnable()
     {
@@ -48,17 +45,14 @@ public class MapEntity : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SelectedThis(bool select)
-    {
-        SelectImage.SetActive(select);
-    }
+    public void SelectedThis(bool select) => SelectImage.SetActive(select);
 
     public void MoveTo(Marker marker)
     {
         if (_moveTarget != null)
             return;
         _moveTarget = marker;
-        direction = Vector3.Normalize(_moveTarget.transform.position - transform.position);
+        _direction = Vector3.Normalize(_moveTarget.transform.position - transform.position);
         StartCoroutine(Moving());
     }
 
@@ -72,8 +66,8 @@ public class MapEntity : MonoBehaviour
     {
         while(Vector3.Distance(_moveTarget.transform.position, transform.position) > _pathChunkStep)
         {
-            direction = Vector3.Normalize(_moveTarget.transform.position - transform.position);
-            transform.position += direction * _pathChunkStep + (Vector3)Random.insideUnitCircle * MoveWaving;
+            _direction = Vector3.Normalize(_moveTarget.transform.position - transform.position);
+            transform.position += _direction * _pathChunkStep + (Vector3)Random.insideUnitCircle * MoveWaving;
             DrawPath();
             yield return new WaitForSeconds(_moveSpeed);
         }

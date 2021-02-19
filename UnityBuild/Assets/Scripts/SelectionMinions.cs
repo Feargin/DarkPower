@@ -17,7 +17,7 @@ public class SelectionMinions : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        Instance = this; 
         PullEntity = new List<GameObject>();
     }
 

@@ -8,10 +8,9 @@ public class TouchMap : MonoBehaviour
     private float MizZ;
     private float MaxZ;
     private float sensitivity;
-    void Start()
-    {
-        
-    }
+    private Camera _camera;
+
+    private void Start() => _camera = GetComponent<Camera>();
 
     private void Update()
     {
@@ -28,10 +27,9 @@ public class TouchMap : MonoBehaviour
 
             float difference = currentMagnitude - prevMagnitude;
         }
-        if(Input.GetMouseButtonDown(0))
-        {
-            Vector3 direction = torchStart - GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
-            GetComponent<Camera>().transform.position += direction;
-        }
+
+        if (!Input.GetMouseButtonDown(0)) return;
+        Vector3 direction = torchStart - _camera.ScreenToWorldPoint(Input.mousePosition);
+        _camera.transform.position += direction;
     }
 }
