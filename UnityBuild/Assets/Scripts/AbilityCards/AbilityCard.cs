@@ -6,6 +6,7 @@ public abstract class AbilityCard : MonoBehaviour
     [SerializeField] protected DiceHolder[] _diceHolders;
     [SerializeField] protected GameObject _disablePanel;
     protected bool _hideDiceOnUse = true;
+    [HideInInspector] public bool _isEnemyAbility = false;
 
     //Require refactoring: separate FightPanel class to ??? and CurrentFightStats 
     private FightPanel Fight;
@@ -30,10 +31,12 @@ public abstract class AbilityCard : MonoBehaviour
     /*
     *   REQUIRE: use Init() after instantiate!
     */
-    public void Init()
+    public void Init(bool playerOwner)
     {
         Fight = FightPanel.Instance;
         bool flag = CanUse(Fight);
+        if(_isEnemyAbility)
+            flag = false;
         foreach(DiceHolder dh in _diceHolders)
         {
             dh.canPlayerPlaceDice = flag;

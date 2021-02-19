@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-
 public class FightPanel : MonoBehaviour
 {   
     [Header("Referenes")]
@@ -23,14 +22,15 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _randomDiceText1;
     [SerializeField] private TextMeshProUGUI _randomDiceText2;
     [SerializeField] private TextMeshProUGUI _resultText;
-    [SerializeField] private TextMeshProUGUI _infoText;
     [SerializeField] private Transform _playerAbilitiesPanel;
+    [SerializeField] private Transform _enemyAbilitiesPanel;
     [SerializeField] private PlayerAbilities _playerAbilities;
 
-    private readonly List<Dice> _enemyActiveDices = new List<Dice>();
-    private readonly List<Dice> _enemyBestDices = new List<Dice>();
-    private readonly List<Dice> _playerActiveDices = new List<Dice>();
-    private readonly List<AbilityCard> _playerCards = new List<AbilityCard>();
+    private List<Dice> _enemyActiveDices = new List<Dice>();
+    private List<Dice> _enemyBestDices = new List<Dice>();
+    private List<Dice> _playerActiveDices = new List<Dice>();
+    private List<AbilityCard> _playerCards = new List<AbilityCard>();
+    private List<AbilityCard> _enemyCards = new List<AbilityCard>();
 
     private static System.Action<int> _onFightEnd;
 
@@ -94,8 +94,6 @@ public class FightPanel : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         _playerLayourtGroup.enabled = false;
-        //foreach(var a in _playerAbilities)
-        //    a.Init();
     }
 
     private void ApplyMarkerBonus()
@@ -180,23 +178,41 @@ public class FightPanel : MonoBehaviour
             into ability where ability != null 
             select Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel))
         {
-            _playerCards.Add(card);
-            card.Init();
+            foreach(AbilityID id in _playerAbilities._playerAbilities)
+            {
+                Ability ability = _playerAbilities.GetAbility(id);
+                if(ability != null)
+                {
+                    AbilityCard card = Instantiate(ability.Card, _playerAbilitiesPanel.position, Quaternion.identity, _playerAbilitiesPanel);
+                    _playerCards.Add(card);
+                    card.Init(true);
+                }
+            }
         }
     }
 
     private void ApplyEnemyAbilities()
     {
-        switch(_marker.Ability)
+        List<AbilityID> abilities = new List<AbilityID>(_marker._possibleAbilities);
+        List<AbilityID> newAbilities = new List<AbilityID>();
+        for(int i = 0; i < _marker.AmoutOfAbilities; i++) 
         {
-            case Marker.MarkerAbility.reroll1s:
-                _infoText.text = "Fight effect:\nenemy reroll 1's dices";
-                StartCoroutine(EnemyReroll1sDices(0.75f));
+            if(abilities.Count == 0)
                 break;
-            
-            default:
-            _infoText.text = "";
-                break;
+            int index = Random.Range(0, abilities.Count);
+            newAbilities.Add(abilities[index]);
+            abilities.RemoveAt(index);
+        }
+        
+        foreach(AbilityID id in newAbilities)
+        {
+            Ability ability = _playerAbilities._abilityHolder.GetAbility(id);
+            if(ability != null)
+            {
+                AbilityCard card = Instantiate(ability.Card, _enemyAbilitiesPanel.position, Quaternion.identity, _enemyAbilitiesPanel);
+                _enemyCards.Add(card);
+                card.Init(false);
+            }
         }
     }
 
@@ -270,11 +286,21 @@ public class FightPanel : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delay);
         Time.timeScale = 1f;
-        foreach (var t in _playerCards)
+
+        //Clear player cards
+        for(int i = 0; i <_playerCards.Count; i++)
         {
             Destroy(t.gameObject);
         }
         _playerCards.Clear();
+
+        //Clear enemy cards
+        for(int i = 0; i <_enemyCards.Count; i++)
+        {
+            Destroy(_enemyCards[i].gameObject);
+        }
+        _enemyCards.Clear();
+
         _fightPanel.SetActive(false);
     }
 

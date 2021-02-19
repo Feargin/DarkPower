@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Marker : MonoBehaviour
 {
     public int StarCount;
     public MarkerBonus BonusLoot;
-    public MarkerAbility Ability;
+    public int AmoutOfAbilities;
+    public List<AbilityID> _possibleAbilities;
+    //public MarkerAbility Ability;
     [SerializeField] private GameObject [] _stars;
     [SerializeField] private GameObject _starPanel;
 
