@@ -26,11 +26,11 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private Transform _enemyAbilitiesPanel;
     [SerializeField] private PlayerAbilities _playerAbilities;
 
-    private List<Dice> _enemyActiveDices = new List<Dice>();
-    private List<Dice> _enemyBestDices = new List<Dice>();
-    private List<Dice> _playerActiveDices = new List<Dice>();
-    private List<AbilityCard> _playerCards = new List<AbilityCard>();
-    private List<AbilityCard> _enemyCards = new List<AbilityCard>();
+    private readonly List<Dice> _enemyActiveDices = new List<Dice>();
+    private readonly List<Dice> _enemyBestDices = new List<Dice>();
+    private readonly List<Dice> _playerActiveDices = new List<Dice>();
+    private readonly List<AbilityCard> _playerCards = new List<AbilityCard>();
+    private readonly List<AbilityCard> _enemyCards = new List<AbilityCard>();
 
     private static System.Action<int> _onFightEnd;
 
@@ -204,15 +204,10 @@ public class FightPanel : MonoBehaviour
             abilities.RemoveAt(index);
         }
         
-        foreach(AbilityHolder.AbilityID id in newAbilities)
+        foreach (var card in from id in newAbilities select _playerAbilities._abilityHolder.GetAbility(id) into ability where ability != null select Instantiate(ability.Card, _enemyAbilitiesPanel.position, Quaternion.identity, _enemyAbilitiesPanel))
         {
-            AbilityHolder.Ability ability = _playerAbilities._abilityHolder.GetAbility(id);
-            if(ability != null)
-            {
-                AbilityCard card = Instantiate(ability.Card, _enemyAbilitiesPanel.position, Quaternion.identity, _enemyAbilitiesPanel);
-                _enemyCards.Add(card);
-                card.Init(false);
-            }
+            _enemyCards.Add(card);
+            card.Init(false);
         }
     }
 
@@ -288,16 +283,16 @@ public class FightPanel : MonoBehaviour
         Time.timeScale = 1f;
 
         //Clear player cards
-        for(int i = 0; i <_playerCards.Count; i++)
+        foreach (var t in _playerCards)
         {
-            Destroy(_playerCards[i].gameObject);
+            Destroy(t.gameObject);
         }
         _playerCards.Clear();
 
         //Clear enemy cards
-        for(int i = 0; i <_enemyCards.Count; i++)
+        foreach (var t in _enemyCards)
         {
-            Destroy(_enemyCards[i].gameObject);
+            Destroy(t.gameObject);
         }
         _enemyCards.Clear();
 

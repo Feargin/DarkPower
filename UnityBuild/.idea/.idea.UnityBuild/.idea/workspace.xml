@@ -52,6 +52,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/SlayerCard.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Dice.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FightPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Materials/New Material.mat" />
+        <option value="$PROJECT_DIR$/Assets/Materials/NewSurfaceShader 1.shader" />
+        <option value="$PROJECT_DIR$/Assets/Materials/NewSurfaceShader.shader" />
       </list>
     </option>
   </component>
@@ -112,6 +115,7 @@
       <workItem from="1613732943326" duration="1448000" />
       <workItem from="1613735725132" duration="158000" />
       <workItem from="1613736317344" duration="6835000" />
+      <workItem from="1613801369132" duration="3329000" />
     </task>
     <servers />
   </component>
