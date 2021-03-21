@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 
-public class AbilityHolder : MonoBehaviour
+public sealed class AbilityHolder : MonoBehaviour
 {
     [SerializeField] private Ability[] _allAbilities;
     public AbilityID AbilityId;

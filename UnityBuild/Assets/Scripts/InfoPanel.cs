@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class InfoPanel : MonoBehaviour
+public sealed class InfoPanel : MonoBehaviour
 {
     [FormerlySerializedAs("InfoParts")] [SerializeField] private GameObject[] _infoParts;
     private int _currentPartIndex;

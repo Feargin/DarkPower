@@ -96,7 +96,7 @@ namespace Localization
 
             //string filePath = Path.Combine(Application.streamingAssetsPath, "Languages/" + langName + ".json");
             var filePath = Resources.Load("Languages/" + langName) as TextAsset;
-            Debug.Log(filePath);
+            //Debug.Log(filePath);
             if (filePath)
             {
                 if (filePath is { })
@@ -110,7 +110,7 @@ namespace Localization
                     }
                 }
 
-                Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
+                //Debug.Log("Загруженные данные: " + _localizedText.Count + " объектов");
             }
             else
             {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MusicManager : MonoBehaviour
+public sealed class MusicManager : MonoBehaviour
 {
     public AudioClip[] sounds;
     private AudioSource _audioSource;

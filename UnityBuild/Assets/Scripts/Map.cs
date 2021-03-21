@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class Map : MonoBehaviour
+public sealed class Map : MonoBehaviour
 {
     [SerializeField] private Transform _mapContent;
     [SerializeField] private ScrollRect _mapScroll;

@@ -6,7 +6,7 @@ public class EventPanel : MonoBehaviour
     [HideInInspector] public Marker SelectedMarker;
     [SerializeField] private Text _name;
     [SerializeField] private Text _comment;
-    [HideInInspector] public Text [] _selectButtons;
+    [HideInInspector] public Text [] _selectButtons; 
 
     /*public void SetDataQest(QuestOption questOption, string questName)
     {

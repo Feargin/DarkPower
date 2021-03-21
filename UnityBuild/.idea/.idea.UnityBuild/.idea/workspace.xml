@@ -29,34 +29,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/InfoPanel.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Localization/LocalizedText.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ResourceHolder.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Settings.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/DepartureMinions.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SelectionMinions.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CandelsController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Localization/LocalizationManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TouchMap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MapEntity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerAbilities.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityHolder.cs" />
-        <option value="$PROJECT_DIR$/Assets/Editor/AbilityHolderEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/AbilityCard.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/BannerCard.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/RitualDaggerCard.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/ScrollOfLuckCard.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AbilityCards/SlayerCard.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Dice.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightPanel.cs" />
-        <option value="$PROJECT_DIR$/Assets/Materials/New Material.mat" />
-        <option value="$PROJECT_DIR$/Assets/Materials/NewSurfaceShader 1.shader" />
-        <option value="$PROJECT_DIR$/Assets/Materials/NewSurfaceShader.shader" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/AbilityHolder.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Marker.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/DepartureMinions.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SelectionMinions.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Entity.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1oYcyE0kICufCSwaYxMY5mUAGUE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -69,8 +48,15 @@
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30008045" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -87,7 +73,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -96,7 +82,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -115,7 +101,14 @@
       <workItem from="1613732943326" duration="1448000" />
       <workItem from="1613735725132" duration="158000" />
       <workItem from="1613736317344" duration="6835000" />
-      <workItem from="1613801369132" duration="3329000" />
+      <workItem from="1613801369132" duration="4987000" />
+      <workItem from="1613879168140" duration="15469000" />
+      <workItem from="1614241395006" duration="160000" />
+      <workItem from="1614269324539" duration="2684000" />
+      <workItem from="1614430712788" duration="3337000" />
+      <workItem from="1614502114752" duration="8564000" />
+      <workItem from="1614531409249" duration="2947000" />
+      <workItem from="1614611827829" duration="14767000" />
     </task>
     <servers />
   </component>
@@ -138,95 +131,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="734" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613467230342">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state x="734" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1613467230342" />
-    <state width="2517" height="179" key="GridCell.Tab.0.bottom" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.0.center" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.0.left" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.0.right" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.1.bottom" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.1.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.1.center" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.1.center/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.1.left" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.1.left/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.1.right" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.1.right/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.2.bottom" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.2.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.2.center" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.2.center/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.2.left" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.2.left/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.2.right" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.2.right/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.3.bottom" timestamp="1613467421871">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.3.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421871" />
-    <state width="2517" height="179" key="GridCell.Tab.3.center" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.3.center/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.3.left" timestamp="1613467421870">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.3.left/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421870" />
-    <state width="2517" height="179" key="GridCell.Tab.3.right" timestamp="1613467421871">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state width="2517" height="179" key="GridCell.Tab.3.right/0.0.2560.1040@0.0.2560.1040" timestamp="1613467421871" />
-    <state x="842" y="340" key="LayersDialog" timestamp="1613735779342">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state x="842" y="340" key="LayersDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1613735779342" />
-    <state x="781" y="165" key="SettingsEditor" timestamp="1613735775920">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state x="781" y="165" key="SettingsEditor/0.0.2560.1040@0.0.2560.1040" timestamp="1613735775920" />
-    <state x="-92" y="142" width="2187" height="1027" key="dock-window-1" timestamp="1613736991919">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state x="-92" y="142" width="2187" height="1027" key="dock-window-1/0.0.2560.1040@0.0.2560.1040" timestamp="1613736991919" />
-    <state x="936" y="240" key="run.anything.popup" timestamp="1613736470214">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state x="936" y="240" key="run.anything.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1613736470214" />
-    <state x="943" y="225" key="search.everywhere.popup" timestamp="1613746764849">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state x="943" y="225" key="search.everywhere.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1613746764849" />
   </component>
 </project>

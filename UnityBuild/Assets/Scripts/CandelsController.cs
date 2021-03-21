@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CandelsController : MonoBehaviour
+public sealed class CandelsController : MonoBehaviour
 {
     [SerializeField] private GameObject [] _candles;
     [SerializeField] private GameObject _winPanel;

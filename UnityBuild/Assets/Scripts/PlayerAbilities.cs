@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AbilityHolder))]
-public class PlayerAbilities : MonoBehaviour
+public sealed class PlayerAbilities : MonoBehaviour
 {
     public List<AbilityHolder.AbilityID> _playerAbilities;
     [HideInInspector] public AbilityHolder _abilityHolder;

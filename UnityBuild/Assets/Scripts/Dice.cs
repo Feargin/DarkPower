@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public sealed class Dice : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Sprite[] _spritesValue;
     [SerializeField] private Sprite _defaultSprite;

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public sealed class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject _initialPanel;
     private GameObject _lastPanel;

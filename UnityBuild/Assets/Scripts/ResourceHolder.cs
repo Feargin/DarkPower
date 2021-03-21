@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class ResourceHolder : MonoBehaviour
+public sealed class ResourceHolder : MonoBehaviour
 {
     public static ResourceHolder Instance;
     public Action<ResourceType, int> OnResourceChange;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class FightPanel : MonoBehaviour
+public sealed class FightPanel : MonoBehaviour
 {   
     [Header("Referenes")]
     [SerializeField] private GameObject _fightPanel;
@@ -44,7 +44,7 @@ public class FightPanel : MonoBehaviour
     [SerializeField] private DiceHolder _playerDice;
     [SerializeField] private DiceHolder _enemyDice;
 
-    private MapEntity _minion;
+    private Entity _minion;
     private Marker _marker;
 
     public static FightPanel Instance;
@@ -61,19 +61,19 @@ public class FightPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        MapEntity.OnTargetArrived += StartFight;
+        Entity.OnTargetArrived += StartFight;
         _playerDice.OnDicePlace += OnDicePlacement;
         Dice.OnDiceRoll += OnDiceRoll;
     }
 
     private void OnDisable()
     {
-        if (MapEntity.OnTargetArrived != null) MapEntity.OnTargetArrived -= StartFight;
+        if (Entity.OnTargetArrived != null) Entity.OnTargetArrived -= StartFight;
         if (_playerDice is { }) _playerDice.OnDicePlace -= OnDicePlacement;
         if (Dice.OnDiceRoll != null) Dice.OnDiceRoll -= OnDiceRoll;
     }
 
-    private void StartFight(MapEntity entity, Marker marker)
+    private void StartFight(Entity entity, Marker marker)
     {
         if (marker.StarCount == 0)
             return;
@@ -264,7 +264,7 @@ public class FightPanel : MonoBehaviour
         _onFightEnd?.Invoke(_reward);
         if(_reward > 0)
         {
-            _marker.Disable();
+            _marker._starPanel?.Invoke();
             _marker.StarCount = 0;
         }
         _minion.Candles += _reward;

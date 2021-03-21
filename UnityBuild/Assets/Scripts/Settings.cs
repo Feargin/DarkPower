@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Camera;
 
-public class Settings : MonoBehaviour
+public sealed class Settings : MonoBehaviour
 {
     [SerializeField] private Slider _music;
     [SerializeField] private Slider _audio;

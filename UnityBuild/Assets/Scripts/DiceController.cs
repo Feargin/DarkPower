@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DiceController : MonoBehaviour
+public sealed class DiceController : MonoBehaviour
 {
     public static int RollD6 ()
     {

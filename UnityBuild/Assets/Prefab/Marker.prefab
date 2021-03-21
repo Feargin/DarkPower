@@ -642,11 +642,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c50903871d8a0b4a9f78949ae94c09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StarCounter: 0
+  StarCount: 0
   BonusLoot: 0
-  Ability: 0
+  AmoutOfAbilities: 0
+  _possibleAbilities: 
   _stars:
   - {fileID: 7846176990595602784}
   - {fileID: 8441620820932168167}
   - {fileID: 5631031454602728398}
-  _starPanel: {fileID: 8164192779931870947}
+  _starPanel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
